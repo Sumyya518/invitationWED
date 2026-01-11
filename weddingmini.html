@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="description" content="Wedding Invitation of Aarav & Ananya" />
+    <title>Aarav & Ananya | Wedding Invitation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Noto+Serif+Devanagari:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #8da399; /* Sage Green */
+        --primary-dark: #6e827a;
+        --cream: #f9f7f2;
+        --gold: #d4af37; /* Metallic Gold */
+        --text-main: #2c3e50;
+        --text-light: #666;
+        --font-script: "Great Vibes", cursive;
+        --font-serif: "Cinzel", serif;
+        --font-body: "Montserrat", sans-serif;
+        --font-hindi: "Noto Serif Devanagari", serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #d1d8d3;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--text-main);
+      }
+
+      /* Mobile Container */
+      .app-container {
+        width: 100%;
+        max-width: 500px; /* Slightly wider to accommodate split view */
+        background: var(--cream);
+        position: relative;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* --- CONTROLS (Lang & Music) --- */
+      .controls-bar {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 200;
+        display: flex;
+        gap: 10px;
+      }
+
+      .lang-select {
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--gold);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text-main);
+        font-size: 12px;
+        font-family: var(--font-body);
+        outline: none;
+        cursor: pointer;
+      }
+
+      .music-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: none;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* --- 3D ENVELOPE --- */
+      .envelope-overlay {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        background: radial-gradient(circle, #a8c0b0 0%, #769182 100%);
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 1s ease 1.5s, pointer-events 0s linear 2.5s;
+      }
+
+      .envelope {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background: #f0f0f0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: transform 0.5s;
+      }
+
+      .envelope:hover {
+        transform: scale(1.02);
+      }
+
+      .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 110px solid #e6e6e6;
+        transform-origin: top;
+        transition: transform 1.2s ease-in-out;
+        z-index: 5;
+      }
+
+      .pocket {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-bottom: 110px solid #f7f7f7;
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .wax-seal {
+        position: absolute;
+        top: -50px;
+        left: -30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #d4af37, #b8860b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: var(--font-serif);
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border: 2px solid #eac968;
+        z-index: 6;
+      }
+
+      .invitation-card-preview {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        width: 280px;
+        height: 180px;
+        background: white;
+        z-index: 2;
+        transition: transform 1.2s ease-in-out 0.8s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+      }
+
+      .click-hint {
+        position: absolute;
+        bottom: -60px;
+        color: white;
+        font-size: 12px;
+        letter-spacing: 2px;
+        animation: pulse 2s infinite;
+        text-transform: uppercase;
+      }
+
+      .envelope-overlay.open .flap {
+        transform: rotateX(180deg);
+        z-index: 1;
+      }
+      .envelope-overlay.open .invitation-card-preview {
+        transform: translateY(-160px) scale(1.1);
+        z-index: 6;
+      }
+      .envelope-overlay.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* --- MAIN CONTENT --- */
+      .content-wrapper {
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        padding-bottom: 60px;
+      }
+      .content-wrapper.visible {
+        opacity: 1;
+      }
+
+      .section {
+        padding: 50px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+      }
+      .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      h1 {
+        font-family: var(--font-script);
+        color: var(--primary);
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin: 15px 0;
+      }
+      h2 {
+        font-family: var(--font-serif);
+        color: var(--text-main);
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      h3 {
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-light);
+        margin-bottom: 10px;
+      }
+
+      .gold-text {
+        color: var(--gold);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+      }
+      .names-large {
+        font-size: 3.5rem;
+        color: var(--primary);
+        font-family: var(--font-script);
+      }
+      .ampersand {
+        color: var(--gold);
+        font-family: var(--font-serif);
+        font-size: 2rem;
+      }
+
+      /* Parents Box */
+      .parents-box {
+        background: white;
+        padding: 30px 20px;
+        margin-top: 20px;
+        border: 1px solid var(--gold);
+        position: relative;
+      }
+      .parents-box::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        border: 1px solid var(--primary);
+        pointer-events: none;
+      }
+
+      /* Countdown */
+      .countdown-wrap {
+        background: var(--primary);
+        color: white;
+        padding: 40px 20px;
+      }
+      .timer-grid {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .time-block {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        min-width: 60px;
+        border-radius: 4px;
+      }
+      .time-val {
+        display: block;
+        font-size: 1.5rem;
+        font-family: var(--font-serif);
+        font-weight: bold;
+      }
+      .time-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Event Cards & Shared Layout */
+      .event-card {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+        border-top: 4px solid var(--gold);
+      }
+
+      /* Responsive Grid for Wedding Venue Section */
+      .venue-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Default Mobile Stack */
+        gap: 20px;
+      }
+
+      @media (min-width: 600px) {
+        .venue-grid {
+          grid-template-columns: 1fr 1fr; /* Desktop Split */
+          text-align: left;
+          align-items: center;
+        }
+        .venue-left {
+          text-align: left;
+        }
+        .venue-right {
+          border-left: 1px solid #eee;
+          padding-left: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .btn-map,
+      .btn-copy {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        border: 1px solid var(--text-main);
+        color: var(--text-main);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        transition: 0.3s;
+        cursor: pointer;
+        background: transparent;
+      }
+      .btn-map:hover,
+      .btn-copy:hover {
+        background: var(--text-main);
+        color: white;
+      }
+
+      /* Share Card Specifics */
+      .share-box {
+        background: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+      }
+      .qr-code-img {
+        width: 100px;
+        height: 100px;
+        margin: 10px auto;
+        display: block;
+        border: 4px solid white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .share-title {
+        font-family: var(--font-serif);
+        font-size: 0.8rem;
+        color: var(--primary);
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      /* RSVP Form */
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+      .form-label {
+        display: block;
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+        color: var(--primary-dark);
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .form-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        background: #fcfcfc;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+      }
+      .form-input:focus {
+        border-color: var(--gold);
+        outline: none;
+      }
+
+      .rsvp-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 15px 0;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .rsvp-btn:hover {
+        background: var(--gold);
+      }
+
+      .icon-svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        margin-right: 5px;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.6;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bgMusic" loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="app-container">
+      <div class="controls-bar">
+        <select
+          id="langSwitcher"
+          class="lang-select"
+          onchange="switchLanguage()"
+        >
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+        <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+          <svg
+            class="icon-svg"
+            style="margin: 0; width: 14px"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="envelope-overlay" id="envelopeOverlay">
+        <div class="envelope" onclick="openInvitation()">
+          <div class="flap"><div class="wax-seal">A&A</div></div>
+          <div class="invitation-card-preview">
+            <h2
+              style="
+                font-family: 'Great Vibes';
+                color: var(--primary);
+                font-size: 2rem;
+                margin: 0;
+              "
+            >
+              Aarav & Ananya
+            </h2>
+          </div>
+          <div class="pocket"></div>
+        </div>
+        <div class="click-hint">Tap to Open</div>
+      </div>
+
+      <div class="content-wrapper" id="mainContent">
+        <section class="section">
+          <p class="gold-text" id="t-welcome">Together with our families</p>
+          <div class="names-large">
+            <span id="t-groom">Aarav</span>
+            <span class="ampersand">&</span>
+            <span id="t-bride">Ananya</span>
+          </div>
+          <p
+            style="
+              margin-top: 20px;
+              max-width: 300px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+            id="t-honor"
+          >
+            Request the honor of your presence at our wedding celebration
+          </p>
+        </section>
+
+        <section class="section" style="background: white">
+          <h2 style="color: var(--gold)" id="t-blessing">With Blessings</h2>
+          <div class="parents-box fade-in">
+            <h3 id="t-groom-parents-title">Groom's Parents</h3>
+            <p>Mr. Rajesh & Mrs. Sunita Sharma</p>
+            <div
+              style="
+                height: 1px;
+                background: #eee;
+                margin: 15px 0;
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            ></div>
+            <h3 id="t-bride-parents-title">Bride's Parents</h3>
+            <p>Mr. Vikram & Mrs. Kavita Verma</p>
+          </div>
+        </section>
+
+        <section class="section countdown-wrap">
+          <p
+            class="gold-text"
+            style="color: rgba(255, 255, 255, 0.7)"
+            id="t-std"
+          >
+            Save The Date
+          </p>
+          <h2
+            style="color: white; font-size: 2rem; margin: 10px 0"
+            id="t-date-main"
+          >
+            12th December 2026
+          </h2>
+          <div class="timer-grid" id="timer"></div>
+        </section>
+
+        <section class="section" style="background: #f4f8f6">
+          <h2 id="t-events-title">The Celebration</h2>
+
+          <div class="event-card fade-in">
+            <div class="venue-grid">
+              <div class="venue-left">
+                <h3
+                  style="font-size: 1.4rem; color: var(--primary)"
+                  id="t-event1-name"
+                >
+                  Wedding Ceremony
+                </h3>
+                <p>
+                  <strong>Date:</strong>
+                  <span id="t-event1-date">12th December 2026</span>
+                </p>
+                <p>
+                  <strong>Time:</strong>
+                  <span id="t-event1-time">7:00 PM Onwards</span>
+                </p>
+                <p><strong>Venue:</strong> The Grand Palace Hotel, Udaipur</p>
+                <a
+                  href="https://maps.google.com"
+                  target="_blank"
+                  class="btn-map"
+                >
+                  <span id="t-btn-map">View Map Location</span>
+                </a>
+              </div>
+
+              <div class="venue-right">
+                <div class="share-box">
+                  <div class="share-title" id="t-share-title">
+                    Share Invitation
+                  </div>
+                  <img
+                    id="dynamic-qr"
+                    src=""
+                    alt="QR Code"
+                    class="qr-code-img"
+                  />
+                  <p
+                    style="font-size: 0.7rem; margin-bottom: 5px"
+                    id="t-scan-caption"
+                  >
+                    Scan to open invitation
+                  </p>
+
+                  <button
+                    class="btn-copy"
+                    onclick="copyLink()"
+                    id="btn-copy-text"
+                  >
+                    <span id="t-btn-copy">Copy Link</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card fade-in">
+            <h3
+              style="font-size: 1.4rem; color: var(--primary)"
+              id="t-event2-name"
+            >
+              Dinner & Reception
+            </h3>
+            <p>
+              <strong>Time:</strong>
+              <span id="t-event2-time">9:00 PM Onwards</span>
+            </p>
+            <p style="margin-top: 10px; font-style: italic" id="t-event2-desc">
+              Join us for an evening of music, dinner, and joy.
+            </p>
+          </div>
+        </section>
+
+        <section class="section" style="background: white">
+          <h2 style="color: var(--primary)" id="t-rsvp-title">RSVP</h2>
+          <p id="t-rsvp-desc">Please confirm your presence by Nov 1st</p>
+
+          <form
+            style="margin-top: 30px"
+            onsubmit="event.preventDefault(); alert('RSVP Sent!');"
+          >
+            <div class="form-group">
+              <label class="form-label" id="t-label-name">Full Name</label>
+              <input type="text" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-label-guests">Total Guests</label>
+              <select class="form-input">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="t-label-prob"
+                >Attendance Probability</label
+              >
+              <select class="form-input">
+                <option value="100">100% - Absolutely!</option>
+                <option value="75">75% - Most Likely</option>
+                <option value="50">50% - Unsure</option>
+              </select>
+            </div>
+            <button class="rsvp-btn" id="t-btn-rsvp">Send Confirmation</button>
+          </form>
+        </section>
+
+        <footer
+          style="
+            text-align: center;
+            padding: 20px;
+            font-size: 0.7rem;
+            color: #aaa;
+          "
+        >
+          Designed for Aarav & Ananya
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      // --- 0. DYNAMIC QR & URL SETUP ---
+      window.onload = function () {
+        const currentUrl = window.location.href;
+        // Generate QR using API
+        document.getElementById(
+          "dynamic-qr"
+        ).src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
+          currentUrl
+        )}`;
+      };
+
+      function copyLink() {
+        const currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          const btn = document.getElementById("btn-copy-text");
+          const originalText = translations[currentLang]["t-btn-copy"];
+          const successText = translations[currentLang]["t-link-copied"];
+
+          // Temporary Success State
+          btn.innerHTML = successText;
+          btn.style.background = "#2c3e50";
+          btn.style.color = "white";
+
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-main)";
+          }, 2000);
+        });
+      }
+
+      // --- 1. LANGUAGE DATA ENGINE ---
+      const translations = {
+        en: {
+          "t-welcome": "Together with our families",
+          "t-groom": "Aarav",
+          "t-bride": "Ananya",
+          "t-honor":
+            "Request the honor of your presence at our wedding celebration",
+          "t-blessing": "With Blessings",
+          "t-groom-parents-title": "Groom's Parents",
+          "t-bride-parents-title": "Bride's Parents",
+          "t-std": "Save The Date",
+          "t-date-main": "12th December 2026",
+          "t-events-title": "The Celebration",
+          "t-event1-name": "Wedding Ceremony",
+          "t-event1-date": "12th December 2026",
+          "t-event1-time": "7:00 PM Onwards",
+          "t-btn-map": "View Map Location",
+          "t-share-title": "Share Invitation",
+          "t-btn-copy": "Copy Link",
+          "t-link-copied": "Link Copied!",
+          "t-scan-caption": "Scan to open invitation",
+          "t-event2-name": "Dinner & Reception",
+          "t-event2-time": "9:00 PM Onwards",
+          "t-event2-desc": "Join us for an evening of music, dinner, and joy.",
+          "t-rsvp-title": "RSVP",
+          "t-rsvp-desc": "Please confirm your presence by Nov 1st",
+          "t-label-name": "Full Name / Guest Name",
+          "t-label-guests": "Total Guests",
+          "t-label-prob": "Attendance Probability",
+          "t-btn-rsvp": "Send Confirmation",
+          "lbl-days": "Days",
+          "lbl-hrs": "Hrs",
+          "lbl-mins": "Mins",
+          "lbl-secs": "Secs",
+        },
+        hi: {
+          "t-welcome": "अपने परिवारों के साथ",
+          "t-groom": "आरव",
+          "t-bride": "अनन्या",
+          "t-honor": "हमारे विवाह समारोह में आपकी उपस्थिति का सम्मान चाहते हैं",
+          "t-blessing": "आशीर्वाद सहित",
+          "t-groom-parents-title": "वर पक्ष",
+          "t-bride-parents-title": "वधु पक्ष",
+          "t-std": "शुभ विवाह",
+          "t-date-main": "12 दिसंबर 2026",
+          "t-events-title": "विवाह कार्यक्रम",
+          "t-event1-name": "विवाह समारोह",
+          "t-event1-date": "12 दिसंबर 2026",
+          "t-event1-time": "शाम 7:00 बजे से",
+          "t-btn-map": "मैप लोकेशन देखें",
+          "t-share-title": "निमंत्रण साझा करें",
+          "t-btn-copy": "लिंक कॉपी करें",
+          "t-link-copied": "लिंक कॉपी हो गया!",
+          "t-scan-caption": "निमंत्रण खोलने के लिए स्कैन करें",
+          "t-event2-name": "रात्रि भोज एवं स्वागत",
+          "t-event2-time": "रात 9:00 बजे से",
+          "t-event2-desc":
+            "संगीत, भोजन और आनंद की शाम में हमारे साथ शामिल हों।",
+          "t-rsvp-title": "आर.एस.वी.पी",
+          "t-rsvp-desc": "कृपया 1 नवंबर तक अपनी उपस्थिति की पुष्टि करें",
+          "t-label-name": "पूरा नाम",
+          "t-label-guests": "कुल अतिथि",
+          "t-label-prob": "आने की संभावना",
+          "t-btn-rsvp": "पुष्टि भेजें",
+          "lbl-days": "दिन",
+          "lbl-hrs": "घंटे",
+          "lbl-mins": "मिनट",
+          "lbl-secs": "सेकंड",
+        },
+      };
+
+      let currentLang = "en";
+
+      function switchLanguage() {
+        const lang = document.getElementById("langSwitcher").value;
+        currentLang = lang;
+
+        // Update Fonts
+        if (lang === "hi") {
+          document.body.style.fontFamily = "'Noto Serif Devanagari', serif";
+        } else {
+          document.body.style.fontFamily = "'Montserrat', sans-serif";
+        }
+
+        // Map translations
+        const data = translations[lang];
+        for (const key in data) {
+          // Ensure we don't accidentally overwrite the button if it's currently showing "Copied!"
+          if (key === "t-link-copied") continue;
+
+          const element = document.getElementById(key);
+          // Handle span inside button for copy link
+          if (key === "t-btn-copy" && element) {
+            element.innerText = data[key];
+          } else if (element) {
+            element.innerText = data[key];
+          }
+        }
+
+        updateTimerDisplay();
+      }
+
+      // --- 2. ENVELOPE & MUSIC ---
+      function openInvitation() {
+        const overlay = document.getElementById("envelopeOverlay");
+        const content = document.getElementById("mainContent");
+        const music = document.getElementById("bgMusic");
+
+        music.volume = 0.5;
+        music
+          .play()
+          .catch((e) => console.log("Audio play failed (browser policy)"));
+
+        overlay.classList.add("open");
+
+        setTimeout(() => {
+          overlay.classList.add("hide");
+          content.classList.add("visible");
+          initScrollObserver();
+        }, 1800);
+      }
+
+      function toggleMusic() {
+        const music = document.getElementById("bgMusic");
+        const btn = document.getElementById("musicBtn");
+        if (music.paused) {
+          music.play();
+          btn.style.opacity = "1";
+        } else {
+          music.pause();
+          btn.style.opacity = "0.5";
+        }
+      }
+
+      // --- 3. COUNTDOWN TIMER ---
+      const weddingDate = new Date("Dec 12, 2026 19:00:00").getTime();
+
+      function updateTimerDisplay() {
+        const now = new Date().getTime();
+        const dist = weddingDate - now;
+
+        const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+        const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((dist % (1000 * 60)) / 1000);
+
+        const labels = {
+          d: translations[currentLang]["lbl-days"],
+          h: translations[currentLang]["lbl-hrs"],
+          m: translations[currentLang]["lbl-mins"],
+          s: translations[currentLang]["lbl-secs"],
+        };
+
+        document.getElementById("timer").innerHTML = `
+            <div class="time-block"><span class="time-val">${d}</span><span class="time-label">${labels.d}</span></div>
+            <div class="time-block"><span class="time-val">${h}</span><span class="time-label">${labels.h}</span></div>
+            <div class="time-block"><span class="time-val">${m}</span><span class="time-label">${labels.m}</span></div>
+            <div class="time-block"><span class="time-val">${s}</span><span class="time-label">${labels.s}</span></div>
+        `;
+      }
+      setInterval(updateTimerDisplay, 1000);
+
+      // --- 4. SCROLL ANIMATIONS ---
+      function initScrollObserver() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>
