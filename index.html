@@ -3,122 +3,143 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Novela - Digital Wedding Invitations</title>
+  <title>Novela | A "New" Way to Tell Your Wedding Story</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <script src="/_sdk/element_sdk.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
   <style>
     body {
       box-sizing: border-box;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    
+    html { scroll-behavior: smooth; }
+    
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #000;
+      transition: width 0.3s ease;
     }
-    :root {
-      --color-bg: #0d0d0d;
-      --color-surface: #1a1a1a;
-      --color-text: #f5f0e8;
-      --color-primary: #c9a962;
-      --color-secondary: #8b7355;
-    }
-    .font-display {
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .font-body {
-      font-family: 'Montserrat', sans-serif;
-    }
-    .gradient-gold {
-      background: linear-gradient(135deg, #c9a962 0%, #e8d5a3 50%, #c9a962 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg, #c9a962 0%, #b8944d 100%);
-      transition: all 0.3s ease;
-    }
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #d4b46d 0%, #c9a962 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
-    }
+    .nav-link:hover::after { width: 100%; }
+    
     .card-hover {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card-hover:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(201, 169, 98, 0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
-    .nav-link {
-      position: relative;
+    
+    .btn-primary {
+      background: #000;
+      color: #fff;
+      transition: all 0.3s ease;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #c9a962;
-      transition: width 0.3s ease;
+    .btn-primary:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .nav-link:hover::after {
-      width: 100%;
+    
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #000;
+      color: #000;
+      transition: all 0.3s ease;
     }
-    .section-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #c9a962, transparent);
+    .btn-secondary:hover {
+      background: #000;
+      color: #fff;
     }
-    .gallery-item {
-      transition: all 0.5s ease;
-    }
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
-    .testimonial-card {
-      background: linear-gradient(145deg, #1f1f1f 0%, #141414 100%);
-      border: 1px solid rgba(201, 169, 98, 0.1);
-    }
-    .price-card {
-      background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
-      border: 1px solid rgba(201, 169, 98, 0.2);
-    }
-    .price-card.featured {
-      border: 2px solid #c9a962;
-      background: linear-gradient(145deg, #1f1a14 0%, #0f0d0a 100%);
-    }
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    
     .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
+      animation: fadeIn 0.8s ease forwards;
     }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .scroll-smooth {
-      scroll-behavior: smooth;
+    
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease forwards;
     }
-    html {
-      scroll-behavior: smooth;
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
-    .language-btn {
-      transition: all 0.3s ease;
+    
+    .slide-in-right {
+      animation: slideInRight 0.8s ease forwards;
     }
-    .language-btn.active {
-      background: #c9a962;
-      color: #0d0d0d;
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
+    
+    .scale-in {
+      animation: scaleIn 0.6s ease forwards;
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    section {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    section:nth-child(even) {
+      animation-delay: 0.1s;
+    }
+    
+    section:nth-child(odd) {
+      animation-delay: 0.2s;
+    }
+    
+    .star-rating { color: #000; }
+    
+    .gallery-item {
+      overflow: hidden;
+    }
+    .gallery-item img {
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-content {
+      max-height: 200px;
+      padding-top: 12px;
+      padding-bottom: 16px;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    
     .whatsapp-float {
       position: fixed;
       bottom: 24px;
@@ -126,467 +147,575 @@
       z-index: 1000;
       animation: pulse 2s infinite;
     }
+    
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-      50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .review-bar {
+      background: #f5f5f5;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .review-bar-fill {
+      background: #000;
+      height: 100%;
+      border-radius: 4px;
+    }
+    
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: #000;
+      margin: 0 auto;
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full font-body" style="background-color: var(--color-bg); color: var(--color-text);">
+ <body class="h-full font-montserrat bg-white text-gray-900">
   <div id="app" class="h-full overflow-auto"><!-- Navigation -->
-   <nav class="fixed top-0 left-0 right-0 z-50 bg-opacity-95" style="background-color: rgba(13, 13, 13, 0.95); backdrop-filter: blur(10px);">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-     <div class="flex items-center justify-between"><!-- Logo -->
-      <div class="flex items-center gap-3"><img src="https://i.ibb.co/G4m3TXq3/Black-and-White-Modern-Graphic-Design-Studio-Logo-. -0000.png" alt="Novela Logo" loading="lazy" width="50" height="50" class="object-contain" onerror="console.error('Logo failed to load:', this.src); this.style.display='none';">
-       <div>
-        <h1 id="nav-brand" class="font-display text-2xl font-semibold tracking-wider" style="color: #c9a962;">NOVELA</h1>
-        <p class="text-xs tracking-widest opacity-60">EST. 2025</p>
-       </div>
-      </div><!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_home">Home</a> <a href="#about" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_about">About</a> <a href="#gallery" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_gallery">Gallery</a> <a href="#pricing" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_pricing">Pricing</a> <a href="#testimonials" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_testimonials">Testimonials</a> <a href="#contact" class="nav-link text-sm tracking-wider hover:text-[#c9a962] transition-colors" data-translate="nav_contact">Contact</a>
-      </div><!-- Language Switcher -->
-      <div class="flex items-center gap-2"><button onclick="setLanguage('en')" class="language-btn active px-3 py-1 text-xs rounded-full border border-[#c9a962]" id="lang-en">EN</button> <button onclick="setLanguage('hi')" class="language-btn px-3 py-1 text-xs rounded-full border border-[#c9a962]" id="lang-hi">हिं</button> <!-- Mobile Menu Button --> <button onclick="toggleMobileMenu()" class="md:hidden ml-4 p-2">
-        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6" /> <line x1="3" y1="12" x2="21" y2="12" /> <line x1="3" y1="18" x2="21" y2="18" />
+   <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-16 sm:h-20"><a href="#home" class="flex items-center gap-3"> <img src="https://i.ibb.co/3Yhh8HvN/Black-and-White-Modern-Graphic-Design-Studio-Logo-. -0000.png" alt="Novela Logo" class="h-10 sm:h-12" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.display='none';">
+       <div class="flex items-center gap-2"><span class="font-cormorant text-2xl sm:text-3xl font-semibold tracking-wide">NOVELA</span> <span class="text-[10px] tracking-widest text-gray-500">EST. 2025</span>
+       </div></a>
+      <div class="hidden lg:flex items-center gap-8"><a href="#home" class="nav-link text-sm tracking-wide" data-translate="nav_home">Home</a> <a href="#about" class="nav-link text-sm tracking-wide" data-translate="nav_about">About</a> <a href="#gallery" class="nav-link text-sm tracking-wide" data-translate="nav_gallery">Gallery</a> <a href="#pricing" class="nav-link text-sm tracking-wide" data-translate="nav_pricing">Pricing</a> <a href="#reviews" class="nav-link text-sm tracking-wide" data-translate="nav_reviews">Reviews</a> <a href="#faq" class="nav-link text-sm tracking-wide" data-translate="nav_faq">FAQ</a> <a href="#contact" class="nav-link text-sm tracking-wide" data-translate="nav_contact">Contact</a>
+      </div>
+      <div class="flex items-center gap-4"><button id="langToggle" class="text-xs tracking-widest border border-gray-300 px-3 py-1.5 hover:bg-black hover:text-white hover:border-black transition-all"> हिंदी </button> <button id="mobileMenuBtn" class="lg:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
         </svg></button>
       </div>
-     </div><!-- Mobile Menu -->
-     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-[#c9a962]/20 pt-4">
-      <div class="flex flex-col gap-4"><a href="#home" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_home">Home</a> <a href="#about" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_about">About</a> <a href="#gallery" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_gallery">Gallery</a> <a href="#pricing" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_pricing">Pricing</a> <a href="#testimonials" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_testimonials">Testimonials</a> <a href="#contact" onclick="closeMobileMenu()" class="text-sm tracking-wider hover:text-[#c9a962]" data-translate="nav_contact">Contact</a>
-      </div>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100">
+     <div class="px-4 py-4 space-y-3"><a href="#home" class="block py-2 text-sm" data-translate="nav_home">Home</a> <a href="#about" class="block py-2 text-sm" data-translate="nav_about">About</a> <a href="#gallery" class="block py-2 text-sm" data-translate="nav_gallery">Gallery</a> <a href="#pricing" class="block py-2 text-sm" data-translate="nav_pricing">Pricing</a> <a href="#reviews" class="block py-2 text-sm" data-translate="nav_reviews">Reviews</a> <a href="#faq" class="block py-2 text-sm" data-translate="nav_faq">FAQ</a> <a href="#contact" class="block py-2 text-sm" data-translate="nav_contact">Contact</a>
      </div>
     </div>
    </nav><!-- Hero Section -->
-   <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"><!-- Decorative Elements -->
-    <div class="absolute inset-0 overflow-hidden">
-     <div class="absolute top-20 left-10 w-72 h-72 rounded-full opacity-5" style="background: radial-gradient(circle, #c9a962 0%, transparent 70%);"></div>
-     <div class="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-5" style="background: radial-gradient(circle, #c9a962 0%, transparent 70%);"></div>
-    </div><!-- Decorative Lines -->
-    <svg class="absolute top-0 left-0 w-full h-full opacity-10" preserveaspectratio="none"><pattern id="grid" width="60" height="60" patternunits="userSpaceOnUse">
-      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#c9a962" stroke-width="0.5" />
-     </pattern> <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
-    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto"><!-- Logo Animation -->
-     <div class="animate-float mb-8"><img src="https://i.ibb.co/G4m3TXq3/Black-and-White-Modern-Graphic-Design-Studio-Logo-. -0000.png" alt="Novela Logo" loading="lazy" width="120" height="120" class="mx-auto object-contain" onerror="console.error('Logo failed to load:', this.src); this.style.display='none';">
+   <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-gray-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in">
+     <p class="text-xs tracking-[0.3em] text-gray-500 mb-6" data-translate="hero_est">ESTABLISHED 2025</p>
+     <h1 class="font-cormorant text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light mb-6 tracking-wide">NOVELA</h1>
+     <div class="w-24 h-px bg-black mx-auto mb-6"></div>
+     <p id="heroTagline" class="font-cormorant text-xl sm:text-2xl md:text-3xl italic text-gray-700 mb-4" data-translate="hero_tagline">A "New" Way to Tell Your Wedding Story</p>
+     <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto mb-10 leading-relaxed" data-translate="hero_desc">Crafting elegant digital wedding invitations that capture the essence of your love story. Serving couples worldwide.</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#gallery" class="btn-primary px-8 py-4 text-sm tracking-widest" data-translate="hero_cta"> VIEW OUR WORK </a> <a href="#contact" class="btn-secondary px-8 py-4 text-sm tracking-widest" data-translate="hero_contact"> GET IN TOUCH </a>
      </div>
-     <p class="text-sm tracking-[0.3em] mb-4 opacity-70" style="color: #c9a962;">EST. 2025</p>
-     <h1 id="hero-title" class="font-display text-6xl md:text-8xl font-light mb-6 gradient-gold">NOVELA</h1>
-     <p id="hero-tagline" class="font-display text-xl md:text-2xl font-light italic mb-4 opacity-80" data-translate="hero_tagline">New Way To Tell Your Wedding Story</p>
-     <div class="section-divider mx-auto mb-8"></div>
-     <p id="hero-desc" class="text-sm md:text-base max-w-2xl mx-auto mb-12 opacity-70 leading-relaxed" data-translate="hero_desc">Transform your wedding invitation into an unforgettable digital experience. Elegant, personalized, and designed to make your special day even more memorable.</p>
-     <div class="flex flex-col sm:flex-row items-center justify-center gap-4"><a href="#gallery" class="btn-gold px-8 py-4 rounded-full text-sm tracking-wider font-medium" style="color: #0d0d0d;" data-translate="hero_btn_gallery">View Our Designs</a> <a href="#contact" class="px-8 py-4 rounded-full text-sm tracking-wider font-medium border border-[#c9a962] hover:bg-[#c9a962] hover:text-[#0d0d0d] transition-all" data-translate="hero_btn_contact">Get In Touch</a>
-     </div><!-- Scroll Indicator -->
-     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7" />
-      </svg>
+     <div class="mt-16 flex justify-center items-center gap-8 text-sm text-gray-500">
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+       </svg><span data-translate="hero_worldwide">Worldwide Service</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+       </svg><span>4.94/5 Rating</span>
+      </div>
      </div>
     </div>
    </section><!-- About Section -->
-   <section id="about" class="py-24 px-6" style="background-color: var(--color-surface);">
-    <div class="max-w-6xl mx-auto">
+   <section id="about" class="py-20 sm:py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
      <div class="text-center mb-16">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;" data-translate="about_subtitle">OUR STORY</p>
-      <h2 id="about-title" class="font-display text-4xl md:text-5xl font-light mb-6" data-translate="about_title">About Novela</h2>
-      <div class="section-divider mx-auto"></div>
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="about_subtitle">OUR STORY</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="about_title">About Novela</h2>
+      <div class="section-divider"></div>
      </div>
-     <div class="grid md:grid-cols-2 gap-12 items-center"><!-- About Image/Graphic -->
-      <div class="relative">
-       <div class="aspect-square rounded-lg overflow-hidden border border-[#c9a962]/20 p-8 flex items-center justify-center" style="background: linear-gradient(145deg, #1f1f1f 0%, #141414 100%);">
-        <svg width="280" height="280" viewbox="0 0 300 300" fill="none" class="opacity-80"><!-- Envelope --> <rect x="50" y="80" width="200" height="140" rx="8" stroke="#c9a962" stroke-width="2" fill="none" /> <path d="M50 90 L150 160 L250 90" stroke="#c9a962" stroke-width="2" fill="none" /> <!-- Heart --> <path d="M150 130 C130 110 100 120 100 145 C100 175 150 195 150 195 C150 195 200 175 200 145 C200 120 170 110 150 130Z" fill="none" stroke="#c9a962" stroke-width="1.5" /> <!-- Decorative rings --> <circle cx="80" cy="250" r="15" stroke="#c9a962" stroke-width="1.5" fill="none" /> <circle cx="95" cy="250" r="15" stroke="#c9a962" stroke-width="1.5" fill="none" /> <!-- Flourish --> <path d="M120 260 Q150 240 180 260" stroke="#c9a962" stroke-width="1" fill="none" /> <path d="M130 270 Q150 250 170 270" stroke="#c9a962" stroke-width="1" fill="none" />
-        </svg>
-       </div>
-       <div class="absolute -bottom-4 -right-4 w-24 h-24 border border-[#c9a962]/30 rounded-lg"></div>
-       <div class="absolute -top-4 -left-4 w-16 h-16 border border-[#c9a962]/30 rounded-lg"></div>
-      </div><!-- About Content -->
-      <div>
-       <p class="text-lg leading-relaxed mb-6 opacity-80" data-translate="about_p1">At Novela, we believe every love story deserves to be told beautifully. Founded in 2025, we specialize in creating stunning digital wedding invitations that capture the essence of your unique journey together.</p>
-       <p class="leading-relaxed mb-8 opacity-70" data-translate="about_p2">Our team of passionate designers combines elegant aesthetics with modern technology to deliver personalized digital cards that leave a lasting impression on your guests. From traditional designs to contemporary styles, we craft invitations that reflect your personality and set the perfect tone for your celebration.</p>
-       <div class="grid grid-cols-2 gap-6">
-        <div class="text-center p-6 rounded-lg border border-[#c9a962]/20">
-         <p class="font-display text-3xl mb-2" style="color: #c9a962;">100+</p>
-         <p class="text-sm opacity-70" data-translate="about_stat1">Happy Couples</p>
+     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-6">
+       <p class="text-gray-600 leading-relaxed" data-translate="about_p1">Born from a passion for beautiful design and meaningful celebrations, Novela reimagines how couples share their wedding story with the world. We believe every love story deserves to be told beautifully.</p>
+       <p class="text-gray-600 leading-relaxed" data-translate="about_p2">Our team of designers creates bespoke digital invitations that blend timeless elegance with modern technology. Each design is crafted with meticulous attention to detail, ensuring your invitation is as unique as your love story.</p>
+       <p class="text-gray-600 leading-relaxed" data-translate="about_p3">From India to every corner of the globe, we've had the privilege of serving couples worldwide, helping them begin their journey together with invitations that leave lasting impressions.</p>
+       <div class="grid grid-cols-3 gap-6 pt-8">
+        <div class="text-center">
+         <p class="font-cormorant text-4xl sm:text-5xl font-light">50+</p>
+         <p class="text-xs tracking-widest text-gray-500 mt-2" data-translate="about_stat1">HAPPY COUPLES</p>
         </div>
-        <div class="text-center p-6 rounded-lg border border-[#c9a962]/20">
-         <p class="font-display text-3xl mb-2" style="color: #c9a962;">50+</p>
-         <p class="text-sm opacity-70" data-translate="about_stat2">Unique Designs</p>
+        <div class="text-center">
+         <p class="font-cormorant text-4xl sm:text-5xl font-light">15+</p>
+         <p class="text-xs tracking-widest text-gray-500 mt-2" data-translate="about_stat2">COUNTRIES</p>
+        </div>
+        <div class="text-center">
+         <p class="font-cormorant text-4xl sm:text-5xl font-light">4.94</p>
+         <p class="text-xs tracking-widest text-gray-500 mt-2" data-translate="about_stat3">RATING</p>
         </div>
        </div>
       </div>
-     </div>
-    </div>
-   </section><!-- Reviews Summary Section -->
-   <section class="py-16 px-6" style="background: linear-gradient(135deg, #1a1410 0%, #0d0d0d 100%);">
-    <div class="max-w-4xl mx-auto text-center">
-     <div class="inline-block mb-6">
-      <div class="flex items-center gap-2 mb-3">
-       <svg width="32" height="32" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg>
-       <svg width="32" height="32" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg>
-       <svg width="32" height="32" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg>
-       <svg width="32" height="32" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg>
-       <svg width="32" height="32" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg>
-      </div>
-      <p class="font-display text-5xl mb-2" style="color: #c9a962;">4.94 / 5</p>
-      <p class="text-sm opacity-70 mb-4">Based on 159 reviews</p>
-      <div class="flex items-center justify-center gap-6 text-sm">
-       <div class="flex items-center gap-2"><span style="color: #c9a962;">★★★★★</span> <span class="opacity-70">150</span>
+      <div class="grid grid-cols-2 gap-4">
+       <div class="space-y-4">
+        <div class="bg-white p-4 shadow-sm card-hover"><img src="https://i.ibb.co/7NGwck9m/Elegant-Classic-Traditional-Wedding-Photographer-Business-Card-. -0000.png" alt="Novela Business Card Front" class="w-full" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+        </div>
+        <div class="bg-white p-4 shadow-sm card-hover"><img src="https://i.ibb.co/0VQ6rgC8/IMG-20260130-WA0173.jpg" alt="Wedding Card Design" class="w-full" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+        </div>
        </div>
-       <div class="flex items-center gap-2"><span style="color: #c9a962;">★★★★☆</span> <span class="opacity-70">9</span>
+       <div class="space-y-4 mt-8">
+        <div class="bg-white p-4 shadow-sm card-hover"><img src="https://i.ibb.co/3yr2fPgh/Elegant-Classic-Traditional-Wedding-Photographer-Business-Card-. -0001.png" alt="Novela Business Card Back" class="w-full" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+        </div>
+        <div class="bg-white p-4 shadow-sm card-hover"><img src="https://i.ibb.co/YBtC6CLn/IMG-20260130-WA0170.jpg" alt="Wedding Card Design" class="w-full" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+        </div>
        </div>
       </div>
      </div>
     </div>
    </section><!-- Gallery Section -->
-   <section id="gallery" class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+   <section id="gallery" class="py-20 sm:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
      <div class="text-center mb-16">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;" data-translate="gallery_subtitle">OUR PORTFOLIO</p>
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-6" data-translate="gallery_title">Design Gallery</h2>
-      <div class="section-divider mx-auto mb-6"></div>
-      <p class="max-w-2xl mx-auto opacity-70" data-translate="gallery_desc">Explore our collection of exquisite digital wedding invitations, each crafted with love and attention to detail.</p>
-     </div><!-- Gallery Grid -->
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Real Design 1 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/zVbbmwNz/IMG-20260130-WA0173.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Elegant Floral</h3>
-        <p class="text-xs opacity-60">Beautiful floral wedding invitation</p>
-       </div>
-      </div><!-- Real Design 2 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/1fgnKQ3c/IMG-20260130-WA0170.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Royal Elegance</h3>
-        <p class="text-xs opacity-60">Sophisticated royal theme design</p>
-       </div>
-      </div><!-- Real Design 3 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/wZgcnqVD/IMG-20260130-WA0169.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Modern Classic</h3>
-        <p class="text-xs opacity-60">Contemporary meets tradition</p>
-       </div>
-      </div><!-- Real Design 4 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/cX34xVnJ/IMG-20260130-WA0168.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Traditional Beauty</h3>
-        <p class="text-xs opacity-60">Rich cultural heritage design</p>
-       </div>
-      </div><!-- Real Design 5 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/k2CLm4Hr/IMG-20260130-WA0172.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Romantic Affair</h3>
-        <p class="text-xs opacity-60">Dreamy romantic design</p>
-       </div>
-      </div><!-- Real Design 6 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/G4TTxXKk/IMG-20260130-WA0171.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Luxury Gold</h3>
-        <p class="text-xs opacity-60">Premium golden elegance</p>
-       </div>
-      </div><!-- Real Design 7 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/p6397WqB/IMG-20260130-WA0231.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Elegant Charm</h3>
-        <p class="text-xs opacity-60">Charming classic style</p>
-       </div>
-      </div><!-- Real Design 8 -->
-      <div class="gallery-item card-hover rounded-lg overflow-hidden border border-[#c9a962]/20" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);">
-       <div class="aspect-[3/4] overflow-hidden"><img src="https://i.ibb.co/r2H7DFSM/IMG-20260130-WA0229.jpg" alt="Wedding Invitation Design" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Design preview unavailable';">
-       </div>
-       <div class="p-4 border-t border-[#c9a962]/10">
-        <h3 class="font-display text-lg mb-1">Graceful Design</h3>
-        <p class="text-xs opacity-60">Graceful and timeless</p>
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="gallery_subtitle">OUR PORTFOLIO</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="gallery_title">Our Designs</h2>
+      <div class="section-divider"></div>
+      <p class="text-gray-600 mt-6 max-w-2xl mx-auto" data-translate="gallery_desc">Each invitation is a unique masterpiece, designed to reflect your personal style and love story.</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/0VQ6rgC8/IMG-20260130-WA0173.jpg" alt="Wedding Invitation Design 1" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_1">Elegant Floral</h3>
+        <p class="text-sm text-gray-500" data-translate="design_1_desc">Timeless beauty with delicate florals</p>
        </div>
       </div>
-     </div>
-    </div>
-   </section><!-- Business Cards Section -->
-   <section class="py-20 px-6" style="background-color: var(--color-surface);">
-    <div class="max-w-5xl mx-auto">
-     <div class="text-center mb-12">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;">OUR IDENTITY</p>
-      <h2 class="font-display text-3xl md:text-4xl font-light mb-6">Business Cards</h2>
-      <div class="section-divider mx-auto"></div>
-     </div>
-     <div class="grid md:grid-cols-2 gap-8">
-      <div class="rounded-xl overflow-hidden border border-[#c9a962]/20 card-hover" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);"><img src="https://i.ibb.co/czstMgw/Elegant-Classic-Traditional-Wedding-Photographer-Business-Card-. -0000.png" alt="Novela Business Card Front" loading="lazy" class="w-full h-auto" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Business card preview unavailable';">
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/YBtC6CLn/IMG-20260130-WA0170.jpg" alt="Wedding Invitation Design 2" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_2">Royal Heritage</h3>
+        <p class="text-sm text-gray-500" data-translate="design_2_desc">Traditional elegance reimagined</p>
+       </div>
       </div>
-      <div class="rounded-xl overflow-hidden border border-[#c9a962]/20 card-hover" style="background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);"><img src="https://i.ibb.co/tww4ndv8/Elegant-Classic-Traditional-Wedding-Photographer-Business-Card-. -0001.png" alt="Novela Business Card Back" loading="lazy" class="w-full h-auto" onerror="console.error('Image failed to load:', this.src); this.style.background='#1a1a1a'; this.alt='Business card preview unavailable';">
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/7dGTpNDw/IMG-20260130-WA0169.jpg" alt="Wedding Invitation Design 3" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_3">Modern Romance</h3>
+        <p class="text-sm text-gray-500" data-translate="design_3_desc">Contemporary love stories</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/SwjdwdQ7/IMG-20260130-WA0168.jpg" alt="Wedding Invitation Design 4" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_4">Classic Charm</h3>
+        <p class="text-sm text-gray-500" data-translate="design_4_desc">Sophisticated simplicity</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/yBBBsWtP/IMG-20260130-WA0172.jpg" alt="Wedding Invitation Design 5" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_5">Enchanted Garden</h3>
+        <p class="text-sm text-gray-500" data-translate="design_5_desc">Nature-inspired beauty</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/ccjGtfRR/IMG-20260130-WA0171.jpg" alt="Wedding Invitation Design 6" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_6">Traditional Splendor</h3>
+        <p class="text-sm text-gray-500" data-translate="design_6_desc">Rich cultural heritage</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/3YznRShG/IMG-20260130-WA0231.jpg" alt="Wedding Invitation Design 7" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_7">Golden Moments</h3>
+        <p class="text-sm text-gray-500" data-translate="design_7_desc">Luxurious golden accents</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50"><img src="https://i.ibb.co/N6CwCqFg/IMG-20260130-WA0229.jpg" alt="Wedding Invitation Design 8" class="w-full aspect-[3/4] object-cover" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5f5f5'; this.alt='Image unavailable';">
+       <div class="p-4">
+        <h3 class="font-cormorant text-xl" data-translate="design_8">Regal Elegance</h3>
+        <p class="text-sm text-gray-500" data-translate="design_8_desc">Majestic wedding invitations</p>
+       </div>
+      </div>
+      <div class="gallery-item card-hover bg-gray-50 flex items-center justify-center aspect-[3/4]">
+       <div class="text-center p-6">
+        <p class="font-cormorant text-3xl mb-4" data-translate="gallery_cta_title">Your Design</p>
+        <p class="text-gray-500 text-sm mb-6" data-translate="gallery_cta_desc">Let us create something unique for you</p><a href="#contact" class="btn-primary px-6 py-3 text-xs tracking-widest inline-block" data-translate="gallery_cta_btn">START NOW</a>
+       </div>
       </div>
      </div>
     </div>
    </section><!-- Pricing Section -->
-   <section id="pricing" class="py-24 px-6" style="background-color: var(--color-surface);">
-    <div class="max-w-6xl mx-auto">
-     <div class="text-center mb-12">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;">CHOOSE YOUR PLAN</p>
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-6">You're one step away from creating your dream invitation</h2>
-      <div class="section-divider mx-auto mb-8"></div><!-- Reviews and Info -->
-      <div class="flex flex-col items-center gap-3 mb-6">
-       <div class="flex items-center gap-2">
-        <div class="flex">
-         <svg width="20" height="20" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-         </svg>
-         <svg width="20" height="20" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-         </svg>
-         <svg width="20" height="20" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-         </svg>
-         <svg width="20" height="20" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-         </svg>
-         <svg width="20" height="20" viewbox="0 0 24 24" fill="#c9a962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-         </svg>
-        </div><span class="text-sm opacity-80">4.9/5 · 105 reviews</span>
-       </div>
-       <p class="text-sm opacity-70">High season: Delivery time ~3 weeks</p>
-       <p class="text-sm" style="color: #c9a962;">All plans include envelope animation with your initials</p>
-      </div><!-- WhatsApp CTA --> <a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#c9a962] hover:bg-[#c9a962] hover:text-[#0d0d0d] transition-all mb-12">
-       <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-       </svg><span class="text-sm font-medium">Book now on WhatsApp</span> </a>
+   <section id="pricing" class="py-20 sm:py-32 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="pricing_subtitle">INVESTMENT</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="pricing_title">Pricing Plans</h2>
+      <div class="section-divider"></div>
+      <p class="text-gray-600 mt-6 max-w-2xl mx-auto" data-translate="pricing_desc">Choose the perfect package for your special day. Every design is customized to your vision.</p>
      </div>
-     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"><!-- Essential Plan -->
-      <div class="price-card rounded-2xl p-8 card-hover">
-       <div class="mb-6">
-        <h3 class="font-display text-2xl mb-2">Essential Plan</h3>
-        <p class="text-sm opacity-60">A beautiful and elegant invitation for your special day</p>
-       </div>
-       <div class="mb-8"><span class="font-display text-5xl" style="color: #c9a962;">₹5,999</span>
+     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"><!-- Essential Plan -->
+      <div class="bg-white p-8 sm:p-10 card-hover border border-gray-100">
+       <div class="text-center mb-8">
+        <p class="text-xs tracking-[0.3em] text-gray-500 mb-2">ESSENTIAL</p>
+        <p class="font-cormorant text-5xl sm:text-6xl font-light">₹5,999</p>
+        <p class="text-sm text-gray-500 mt-2">Beautiful and elegant</p>
        </div>
        <ul class="space-y-4 mb-8">
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">4 information sections</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">4 information sections</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Elegant, minimal design</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">Elegant, minimal design</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">RSVP form</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">RSVP form</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Envelope opening animation with your initials</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">Envelope opening animation with your initials</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Mobile &amp; desktop friendly</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">Mobile &amp; desktop friendly</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Standard delivery</span></li>
-       </ul><a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="block text-center py-4 rounded-full text-sm tracking-wider font-medium border border-[#c9a962] hover:bg-[#c9a962] hover:text-[#0d0d0d] transition-all">Choose Plan</a>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600">Standard delivery</span></li>
+       </ul><a href="#contact" class="btn-secondary w-full py-4 text-sm tracking-widest text-center block">CHOOSE PLAN</a>
+      </div><!-- Experience Plan -->
+      <div class="bg-white p-8 sm:p-10 card-hover border border-gray-100">
+       <div class="text-center mb-8">
+        <p class="text-xs tracking-[0.3em] text-gray-500 mb-2" data-translate="plan1_name">EXPERIENCE</p>
+        <p class="font-cormorant text-5xl sm:text-6xl font-light">₹7,999</p>
+        <p class="text-sm text-gray-500 mt-2" data-translate="plan1_note">Perfect starting point</p>
+       </div>
+       <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f1">4 information blocks included</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f2">Custom design template</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f3">Background photo of choice</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f4">RSVP functionality</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f5">2 revision rounds</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-600" data-translate="plan1_f6">Delivery in 5-7 days</span></li>
+       </ul>
+       <p class="text-xs text-gray-500 text-center mb-6 italic" data-translate="plan1_custom">This is just the starting point – we can modify whatever you want.</p><a href="#contact" class="btn-secondary w-full py-4 text-sm tracking-widest text-center block" data-translate="plan_cta">GET STARTED</a>
       </div><!-- Premium Plan -->
-      <div class="price-card featured rounded-2xl p-8 card-hover relative overflow-hidden">
-       <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium" style="background: #c9a962; color: #0d0d0d;">
-        Most Popular
+      <div class="bg-black text-white p-8 sm:p-10 card-hover relative">
+       <div class="absolute top-0 right-0 bg-white text-black text-xs px-4 py-2 tracking-wider" data-translate="plan2_popular">
+        MOST POPULAR
        </div>
-       <div class="mb-6">
-        <h3 class="font-display text-2xl mb-2">Premium Plan</h3>
-        <p class="text-sm opacity-60">Most couples choose this — for a truly refined and complete experience</p>
-       </div>
-       <div class="mb-8"><span class="font-display text-5xl" style="color: #c9a962;">₹8,999</span>
+       <div class="text-center mb-8">
+        <p class="text-xs tracking-[0.3em] text-gray-400 mb-2" data-translate="plan2_name">PREMIUM</p>
+        <p class="font-cormorant text-5xl sm:text-6xl font-light">₹8,999</p>
+        <p class="text-sm text-gray-400 mt-2" data-translate="plan2_note">For couples who want it all</p>
        </div>
        <ul class="space-y-4 mb-8">
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Flexible information sections</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f1">Unlimited information blocks</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">100% custom design</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f2">100% custom design</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">All premium features included</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f3">All extras included</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Design refinements as needed</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f4">Unlimited design adjustments</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Fast delivery (48-72 hours)</span></li>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f5">Fast delivery 48-72h</span></li>
         <li class="flex items-start gap-3">
-         <svg width="20" height="20" viewbox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5"><circle cx="10" cy="10" r="9" stroke="#c9a962" stroke-width="1.5" /> <path d="M6 10 L9 13 L14 7" stroke="#c9a962" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-         </svg><span class="text-sm opacity-80">Priority support</span></li>
-       </ul><a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="btn-gold block text-center py-4 rounded-full text-sm tracking-wider font-medium" style="color: #0d0d0d;">Choose Plan</a>
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f6">Advanced RSVP dashboard</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f7">Customizable envelope animation</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg><span class="text-gray-300" data-translate="plan2_f8">Priority support</span></li>
+       </ul><a href="#contact" class="bg-white text-black w-full py-4 text-sm tracking-widest text-center block hover:bg-gray-100 transition-all" data-translate="plan_cta">GET STARTED</a>
       </div>
      </div>
     </div>
-   </section><!-- Testimonials Section -->
-   <section id="testimonials" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
+   </section><!-- Reviews Section -->
+   <section id="reviews" class="py-20 sm:py-32 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
      <div class="text-center mb-16">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;" data-translate="testimonials_subtitle">LOVE STORIES</p>
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-6" data-translate="testimonials_title">What Our Couples Say</h2>
-      <div class="section-divider mx-auto"></div>
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="reviews_subtitle">TESTIMONIALS</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="reviews_title">Customer Reviews</h2>
+      <div class="section-divider"></div>
+     </div><!-- Overall Rating -->
+     <div class="max-w-xl mx-auto mb-16 bg-gray-50 p-8 text-center">
+      <p class="font-cormorant text-6xl sm:text-7xl font-light mb-2">4.94</p>
+      <div class="flex justify-center gap-1 mb-3">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg>
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg>
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg>
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg>
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg>
+      </div>
+      <p class="text-sm text-gray-500" data-translate="reviews_based">Based on 159 reviews</p><!-- Rating Breakdown -->
+      <div class="mt-6 space-y-2 text-left">
+       <div class="flex items-center gap-3"><span class="text-sm w-8">5</span>
+        <div class="review-bar flex-1">
+         <div class="review-bar-fill" style="width: 94%"></div>
+        </div><span class="text-sm w-8 text-right">150</span>
+       </div>
+       <div class="flex items-center gap-3"><span class="text-sm w-8">4</span>
+        <div class="review-bar flex-1">
+         <div class="review-bar-fill" style="width: 6%"></div>
+        </div><span class="text-sm w-8 text-right">9</span>
+       </div>
+       <div class="flex items-center gap-3"><span class="text-sm w-8">3</span>
+        <div class="review-bar flex-1">
+         <div class="review-bar-fill" style="width: 0%"></div>
+        </div><span class="text-sm w-8 text-right">0</span>
+       </div>
+       <div class="flex items-center gap-3"><span class="text-sm w-8">2</span>
+        <div class="review-bar flex-1">
+         <div class="review-bar-fill" style="width: 0%"></div>
+        </div><span class="text-sm w-8 text-right">0</span>
+       </div>
+       <div class="flex items-center gap-3"><span class="text-sm w-8">1</span>
+        <div class="review-bar flex-1">
+         <div class="review-bar-fill" style="width: 0%"></div>
+        </div><span class="text-sm w-8 text-right">0</span>
+       </div>
+      </div>
+     </div><!-- Review Cards -->
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 p-6 card-hover">
+       <div class="flex gap-1 mb-4">
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-gray-600 text-sm leading-relaxed mb-4" data-translate="review1">"Absolutely stunning! Novela created the most beautiful digital invitation for our wedding. Our guests were so impressed with the elegant design and smooth animations."</p>
+       <p class="font-cormorant text-lg">— Priya &amp; Rahul</p>
+       <p class="text-xs text-gray-500">Mumbai, India</p>
+      </div>
+      <div class="bg-gray-50 p-6 card-hover">
+       <div class="flex gap-1 mb-4">
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-gray-600 text-sm leading-relaxed mb-4" data-translate="review2">"Working with Novela was a dream! They understood our vision perfectly and delivered beyond our expectations. The RSVP feature made tracking responses so easy."</p>
+       <p class="font-cormorant text-lg">— Sarah &amp; James</p>
+       <p class="text-xs text-gray-500">London, UK</p>
+      </div>
+      <div class="bg-gray-50 p-6 card-hover">
+       <div class="flex gap-1 mb-4">
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-gray-600 text-sm leading-relaxed mb-4" data-translate="review3">"Fast delivery, beautiful design, excellent communication. Our custom envelope animation was the highlight! Highly recommend Novela to all couples."</p>
+       <p class="font-cormorant text-lg">— Aisha &amp; Omar</p>
+       <p class="text-xs text-gray-500">Dubai, UAE</p>
+      </div>
      </div>
-     <div class="grid md:grid-cols-3 gap-6"><!-- Testimonial 1 -->
-      <div class="testimonial-card rounded-xl p-8 card-hover">
-       <svg width="40" height="40" viewbox="0 0 40 40" fill="none" class="mb-6 opacity-30"><path d="M10 25 L10 15 Q10 10 15 10 L20 10 L20 15 L15 15 L15 25 Z" fill="#c9a962" /> <path d="M25 25 L25 15 Q25 10 30 10 L35 10 L35 15 L30 15 L30 25 Z" fill="#c9a962" />
-       </svg>
-       <p class="mb-6 opacity-80 leading-relaxed" data-translate="testimonial1_text">Novela created the most beautiful digital invitation for our wedding. Our guests were amazed by the design and the attention to detail. Highly recommend!</p>
-       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #c9a962 0%, #8b7355 100%);"><span class="font-display text-lg" style="color: #0d0d0d;">P</span>
-        </div>
-        <div>
-         <p class="font-medium">Priya &amp; Rohan</p>
-         <p class="text-xs opacity-60">Mumbai, 2025</p>
-        </div>
+     <div class="text-center mt-12"><a href="#contact" class="btn-secondary px-8 py-4 text-sm tracking-widest inline-block" data-translate="write_review">SHARE YOUR EXPERIENCE</a>
+     </div>
+    </div>
+   </section><!-- FAQ Section -->
+   <section id="faq" class="py-20 sm:py-32 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="faq_subtitle">QUESTIONS</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="faq_title">Frequently Asked Questions (FAQs)</h2>
+      <div class="section-divider"></div>
+     </div>
+     <div class="space-y-0">
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq1_q">1. How do I book a plan?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq1_a">You can book instantly by messaging us on WhatsApp: <a href="https://wa.me/919060206586" class="underline" target="_blank" rel="noopener noreferrer">https://wa.me/919060206586</a></p>
        </div>
-      </div><!-- Testimonial 2 -->
-      <div class="testimonial-card rounded-xl p-8 card-hover">
-       <svg width="40" height="40" viewbox="0 0 40 40" fill="none" class="mb-6 opacity-30"><path d="M10 25 L10 15 Q10 10 15 10 L20 10 L20 15 L15 15 L15 25 Z" fill="#c9a962" /> <path d="M25 25 L25 15 Q25 10 30 10 L35 10 L35 15 L30 15 L30 25 Z" fill="#c9a962" />
-       </svg>
-       <p class="mb-6 opacity-80 leading-relaxed" data-translate="testimonial2_text">The team understood exactly what we wanted. The final design was elegant, modern, and perfectly captured our love story. Worth every rupee!</p>
-       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #c9a962 0%, #8b7355 100%);"><span class="font-display text-lg" style="color: #0d0d0d;">A</span>
-        </div>
-        <div>
-         <p class="font-medium">Ananya &amp; Vikram</p>
-         <p class="text-xs opacity-60">Delhi, 2025</p>
-        </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq2_q">2. What information do I need to provide?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq2_a">You'll share your event details, names, dates, locations, and any preferences. We'll take care of the rest.</p>
        </div>
-      </div><!-- Testimonial 3 -->
-      <div class="testimonial-card rounded-xl p-8 card-hover">
-       <svg width="40" height="40" viewbox="0 0 40 40" fill="none" class="mb-6 opacity-30"><path d="M10 25 L10 15 Q10 10 15 10 L20 10 L20 15 L15 15 L15 25 Z" fill="#c9a962" /> <path d="M25 25 L25 15 Q25 10 30 10 L35 10 L35 15 L30 15 L30 25 Z" fill="#c9a962" />
-       </svg>
-       <p class="mb-6 opacity-80 leading-relaxed" data-translate="testimonial3_text">From concept to delivery, Novela exceeded our expectations. The RSVP feature was so convenient, and everyone loved the beautiful animation!</p>
-       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #c9a962 0%, #8b7355 100%);"><span class="font-display text-lg" style="color: #0d0d0d;">S</span>
-        </div>
-        <div>
-         <p class="font-medium">Simran &amp; Arjun</p>
-         <p class="text-xs opacity-60">Bangalore, 2025</p>
-        </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq3_q">3. Can I customize my invitation?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq3_a">Yes! All plans allow customization, and the Premium Plan includes unlimited revisions.</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq4_q">4. What is the delivery time?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq4_a">Standard delivery is within 2–3 weeks. Premium delivery is faster (48–72 hours).</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq5_q">5. Will my invitation work on all devices?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq5_a">Yes. Your invitation will be fully responsive and accessible on mobile, tablet, and desktop.</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq6_q">6. Do you provide RSVP management?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq6_a">Yes. All plans include an RSVP form to easily collect guest responses.</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq7_q">7. Is the envelope animation included?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq7_a">Yes. Every plan includes a customizable envelope opening animation with your initials.</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq8_q">8. Can I make changes after delivery?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq8_a">Minor changes are supported. Premium clients receive unlimited revisions.</p>
+       </div>
+      </div>
+      <div class="faq-item py-4"><button class="faq-toggle w-full flex justify-between items-center text-left"> <span class="font-medium" data-translate="faq9_q">9. Do you offer refunds?</span> <span class="faq-icon text-2xl font-light">+</span> </button>
+       <div class="faq-content">
+        <p class="text-gray-600 text-sm leading-relaxed" data-translate="faq9_a">Because this is a custom digital service, refunds are not available once work has started. However, we ensure full satisfaction before final delivery.</p>
        </div>
       </div>
      </div>
     </div>
    </section><!-- Contact Section -->
-   <section id="contact" class="py-24 px-6" style="background-color: var(--color-surface);">
-    <div class="max-w-6xl mx-auto">
+   <section id="contact" class="py-20 sm:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
      <div class="text-center mb-16">
-      <p class="text-sm tracking-[0.3em] mb-4" style="color: #c9a962;" data-translate="contact_subtitle">GET IN TOUCH</p>
-      <h2 class="font-display text-4xl md:text-5xl font-light mb-6" data-translate="contact_title">Contact Us</h2>
-      <div class="section-divider mx-auto mb-6"></div>
-      <p class="max-w-2xl mx-auto opacity-70" data-translate="contact_desc">Ready to create your perfect digital invitation? We'd love to hear from you.</p>
+      <p class="text-xs tracking-[0.3em] text-gray-500 mb-4" data-translate="contact_subtitle">GET IN TOUCH</p>
+      <h2 class="font-cormorant text-4xl sm:text-5xl md:text-6xl font-light mb-6" data-translate="contact_title">Contact Us</h2>
+      <div class="section-divider"></div>
+      <p class="text-gray-600 mt-6 max-w-2xl mx-auto" data-translate="contact_desc">Ready to create your perfect invitation? Reach out and let's bring your vision to life.</p>
      </div>
-     <div class="grid md:grid-cols-2 gap-12"><!-- Contact Form -->
-      <div>
-       <form id="contact-form" class="space-y-6">
-        <div><label for="name" class="block text-sm mb-2 opacity-70" data-translate="contact_form_name">Your Name</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg bg-[#0d0d0d] border border-[#c9a962]/30 focus:border-[#c9a962] focus:outline-none transition-colors" placeholder="Enter your name">
+     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20"><!-- Contact Form -->
+      <div class="bg-gray-50 p-8 sm:p-10">
+       <form id="contactForm" class="space-y-6">
+        <div><label class="block text-xs tracking-widest text-gray-500 mb-2" data-translate="form_name">YOUR NAME</label> <input type="text" name="name" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:border-black focus:outline-none transition-colors" required>
         </div>
-        <div><label for="email" class="block text-sm mb-2 opacity-70" data-translate="contact_form_email">Email Address</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-[#0d0d0d] border border-[#c9a962]/30 focus:border-[#c9a962] focus:outline-none transition-colors" placeholder="your@email.com">
+        <div><label class="block text-xs tracking-widest text-gray-500 mb-2" data-translate="form_email">EMAIL ADDRESS</label> <input type="email" name="email" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:border-black focus:outline-none transition-colors" required>
         </div>
-        <div><label for="phone" class="block text-sm mb-2 opacity-70" data-translate="contact_form_phone">Phone Number</label> <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg bg-[#0d0d0d] border border-[#c9a962]/30 focus:border-[#c9a962] focus:outline-none transition-colors" placeholder="+91 XXXXX XXXXX">
+        <div><label class="block text-xs tracking-widest text-gray-500 mb-2" data-translate="form_date">WEDDING DATE</label> <input type="date" name="date" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:border-black focus:outline-none transition-colors">
         </div>
-        <div><label for="message" class="block text-sm mb-2 opacity-70" data-translate="contact_form_message">Your Message</label> <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-[#0d0d0d] border border-[#c9a962]/30 focus:border-[#c9a962] focus:outline-none transition-colors resize-none" placeholder="Tell us about your wedding..."></textarea>
-        </div><button type="submit" class="btn-gold w-full py-4 rounded-full text-sm tracking-wider font-medium" style="color: #0d0d0d;" data-translate="contact_form_submit">Send Message</button>
+        <div><label class="block text-xs tracking-widest text-gray-500 mb-2" data-translate="form_message">YOUR MESSAGE</label> <textarea rows="4" name="message" class="w-full bg-white border border-gray-200 px-4 py-3 text-sm focus:border-black focus:outline-none transition-colors resize-none" required></textarea>
+        </div><button type="submit" class="btn-primary w-full py-4 text-sm tracking-widest" data-translate="form_submit">SEND MESSAGE</button>
        </form>
-       <p id="form-success" class="hidden mt-4 text-center text-sm" style="color: #c9a962;">Thank you! We'll get back to you soon.</p>
+       <p id="formSuccess" class="hidden text-center text-green-600 mt-4 text-sm">Message sent successfully!</p>
       </div><!-- Contact Info & Map -->
-      <div class="space-y-8"><!-- Contact Details -->
-       <div class="grid grid-cols-1 gap-4"><a href="mailto:novela.official25@gmail.com" class="flex items-center gap-4 p-4 rounded-lg border border-[#c9a962]/20 hover:border-[#c9a962]/50 transition-colors">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(201, 169, 98, 0.1);">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /> <path d="M2 6 L12 13 L22 6" />
-          </svg>
-         </div>
-         <div>
-          <p class="text-xs opacity-60 mb-1" data-translate="contact_email_label">Email</p>
-          <p id="contact-email" class="text-sm">novela.official25@gmail.com</p>
-         </div></a> <a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-lg border border-[#c9a962]/20 hover:border-[#c9a962]/50 transition-colors">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(201, 169, 98, 0.1);">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-          </svg>
-         </div>
-         <div>
-          <p class="text-xs opacity-60 mb-1" data-translate="contact_phone_label">Phone / WhatsApp</p>
-          <p id="contact-phone" class="text-sm">+91 9060206586</p>
-         </div></a> <a href="https://www.instagram.com/official_novela?igsh=MTRiYWgzZzZ2NXZ1eg==" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-lg border border-[#c9a962]/20 hover:border-[#c9a962]/50 transition-colors">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: rgba(201, 169, 98, 0.1);">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#c9a962" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" /> <circle cx="12" cy="12" r="4" /> <circle cx="18" cy="6" r="1.5" fill="#c9a962" />
-          </svg>
-         </div>
-         <div>
-          <p class="text-xs opacity-60 mb-1">Instagram</p>
-          <p class="text-sm">@official_novela</p>
-         </div></a>
-       </div><!-- Global Map -->
-       <div class="rounded-lg overflow-hidden border border-[#c9a962]/20 p-4" style="background: linear-gradient(145deg, #0f0f0f 0%, #0a0a0a 100%);">
-        <p class="text-sm opacity-60 mb-4" data-translate="contact_location">Serving Worldwide - India &amp; International</p>
-        <svg viewbox="0 0 400 200" fill="none" class="w-full h-auto"><!-- Simplified World Map --> <!-- Globe circle --> <circle cx="200" cy="100" r="90" stroke="#c9a962" stroke-width="1" fill="none" opacity="0.3" /> <!-- Latitude lines --> <ellipse cx="200" cy="100" rx="90" ry="30" stroke="#c9a962" stroke-width="0.5" fill="none" opacity="0.2" /> <ellipse cx="200" cy="100" rx="90" ry="60" stroke="#c9a962" stroke-width="0.5" fill="none" opacity="0.2" /> <line x1="110" y1="100" x2="290" y2="100" stroke="#c9a962" stroke-width="0.5" opacity="0.2" /> <!-- Longitude lines --> <ellipse cx="200" cy="100" rx="30" ry="90" stroke="#c9a962" stroke-width="0.5" fill="none" opacity="0.2" /> <ellipse cx="200" cy="100" rx="60" ry="90" stroke="#c9a962" stroke-width="0.5" fill="none" opacity="0.2" /> <line x1="200" y1="10" x2="200" y2="190" stroke="#c9a962" stroke-width="0.5" opacity="0.2" /> <!-- Location pins around the globe --> <g transform="translate(180, 80)">
-          <circle cx="0" cy="0" r="6" fill="rgba(201, 169, 98, 0.3)" stroke="#c9a962" stroke-width="1" />
-          <circle cx="0" cy="0" r="3" fill="#c9a962" />
-         </g> <g transform="translate(230, 110)">
-          <circle cx="0" cy="0" r="6" fill="rgba(201, 169, 98, 0.3)" stroke="#c9a962" stroke-width="1" />
-          <circle cx="0" cy="0" r="3" fill="#c9a962" />
-         </g> <g transform="translate(160, 120)">
-          <circle cx="0" cy="0" r="6" fill="rgba(201, 169, 98, 0.3)" stroke="#c9a962" stroke-width="1" />
-          <circle cx="0" cy="0" r="3" fill="#c9a962" />
-         </g> <g transform="translate(210, 90)">
-          <circle cx="0" cy="0" r="6" fill="rgba(201, 169, 98, 0.3)" stroke="#c9a962" stroke-width="1" />
-          <circle cx="0" cy="0" r="3" fill="#c9a962" />
-         </g> <!-- Decorative stars for international reach --> <circle cx="130" cy="60" r="2" fill="#c9a962" opacity="0.4" /> <circle cx="260" cy="70" r="2" fill="#c9a962" opacity="0.4" /> <circle cx="150" cy="150" r="2" fill="#c9a962" opacity="0.4" /> <circle cx="250" cy="140" r="2" fill="#c9a962" opacity="0.4" />
-        </svg>
+      <div class="space-y-8">
+       <div class="space-y-6">
+        <div>
+         <p class="text-xs tracking-widest text-gray-500 mb-2" data-translate="contact_email_label">EMAIL</p><a id="contactEmail" href="mailto:novela.official25@gmail.com" class="text-lg hover:underline">novela.official25@gmail.com</a>
+        </div>
+        <div>
+         <p class="text-xs tracking-widest text-gray-500 mb-2" data-translate="contact_phone_label">PHONE / WHATSAPP</p><a id="contactPhone" href="tel:+919060206586" class="text-lg hover:underline">+91 9060206586</a>
+        </div>
+        <div>
+         <p class="text-xs tracking-widest text-gray-500 mb-2" data-translate="contact_follow">FOLLOW US</p><a href="https://www.instagram.com/official_novela?igsh=MTRiYWgzZzZ2NXZ1eg==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-lg hover:underline">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg> @official_novela </a>
+        </div>
+       </div><!-- Location Map -->
+       <div class="bg-gray-100 p-4 aspect-video"><iframe src="https://www.google.com/maps?q=India&amp;output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
        </div>
       </div>
      </div>
     </div>
    </section><!-- Footer -->
-   <footer class="py-12 px-6 border-t border-[#c9a962]/10">
-    <div class="max-w-6xl mx-auto">
-     <div class="grid md:grid-cols-3 gap-8 items-center"><!-- Logo -->
-      <div class="flex items-center gap-3"><img src="https://i.ibb.co/G4m3TXq3/Black-and-White-Modern-Graphic-Design-Studio-Logo-. -0000.png" alt="Novela Logo" loading="lazy" width="42" height="42" class="object-contain" onerror="console.error('Logo failed to load:', this.src); this.style.display='none';">
-       <div>
-        <h3 class="font-display text-xl" style="color: #c9a962;">NOVELA</h3>
-        <p class="text-xs opacity-60">EST. 2025</p>
+   <footer class="bg-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-3 gap-12 mb-12">
+      <div>
+       <p class="font-cormorant text-3xl mb-4">NOVELA</p>
+       <p class="text-gray-400 text-sm leading-relaxed" data-translate="footer_tagline">A "New" Way to Tell Your Wedding Story</p>
+       <p class="text-gray-500 text-xs mt-4">Est. 2025</p>
+      </div>
+      <div>
+       <p class="text-xs tracking-widest text-gray-400 mb-4" data-translate="footer_links">QUICK LINKS</p>
+       <div class="space-y-2"><a href="#about" class="block text-gray-300 hover:text-white transition-colors text-sm" data-translate="nav_about">About</a> <a href="#gallery" class="block text-gray-300 hover:text-white transition-colors text-sm" data-translate="nav_gallery">Gallery</a> <a href="#pricing" class="block text-gray-300 hover:text-white transition-colors text-sm" data-translate="nav_pricing">Pricing</a> <a href="#contact" class="block text-gray-300 hover:text-white transition-colors text-sm" data-translate="nav_contact">Contact</a>
        </div>
-      </div><!-- Social Links -->
-      <div class="flex items-center justify-center gap-4"><a href="https://www.instagram.com/official_novela?igsh=MTRiYWgzZzZ2NXZ1eg==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-[#c9a962]/30 flex items-center justify-center hover:bg-[#c9a962] hover:text-[#0d0d0d] transition-all group">
-        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:stroke-[#0d0d0d]" style="stroke: #c9a962;"><rect x="2" y="2" width="20" height="20" rx="5" /> <circle cx="12" cy="12" r="4" /> <circle cx="18" cy="6" r="1.5" fill="currentColor" />
-        </svg></a> <a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-[#c9a962]/30 flex items-center justify-center hover:bg-[#c9a962] hover:text-[#0d0d0d] transition-all group">
-        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:stroke-[#0d0d0d]" style="stroke: #c9a962;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg></a>
-      </div><!-- Copyright -->
-      <div class="text-center md:text-right">
-       <p class="text-sm opacity-60" data-translate="footer_copyright">© 2025 Novela. All rights reserved.</p>
-       <p class="text-xs opacity-40 mt-1" data-translate="footer_tagline">New Way To Tell Your Wedding Story</p>
+      </div>
+      <div>
+       <p class="text-xs tracking-widest text-gray-400 mb-4" data-translate="footer_contact">CONTACT</p>
+       <p class="text-gray-300 text-sm mb-2">novela.official25@gmail.com</p>
+       <p class="text-gray-300 text-sm mb-4">+91 9060206586</p><a href="https://www.instagram.com/official_novela?igsh=MTRiYWgzZzZ2NXZ1eg==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg> Instagram </a>
       </div>
      </div>
+     <div class="border-t border-gray-800 pt-8 text-center">
+      <p class="text-gray-500 text-xs" data-translate="footer_copy">© 2025 Novela. All rights reserved. Crafted with love.</p>
+     </div>
     </div>
-   </footer><!-- WhatsApp Float Button --> <a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="whatsapp-float w-14 h-14 rounded-full flex items-center justify-center" style="background: #25D366;">
-    <svg width="28" height="28" viewbox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+   </footer><!-- WhatsApp Float Button --> <a href="https://wa.me/919060206586" target="_blank" rel="noopener noreferrer" class="whatsapp-float bg-black hover:bg-gray-800 text-white p-4 rounded-full shadow-lg transition-all">
+    <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg></a>
   </div>
   <script>
-    // Configuration and translations
     const defaultConfig = {
-      business_name: 'NOVELA',
-      tagline: 'New Way To Tell Your Wedding Story',
-      about_title: 'About Novela',
+      hero_tagline: 'A "New" Way to Tell Your Wedding Story',
       contact_email: 'novela.official25@gmail.com',
-      contact_phone: '+91 9060206586',
-      background_color: '#0d0d0d',
-      surface_color: '#1a1a1a',
-      text_color: '#f5f0e8',
-      primary_color: '#c9a962',
-      secondary_color: '#8b7355',
-      font_family: 'Cormorant Garamond',
-      font_size: 16
+      contact_phone: '+91 9060206586'
     };
-
-    let config = { ...defaultConfig };
-    let currentLanguage = 'en';
 
     const translations = {
       en: {
@@ -594,259 +723,346 @@
         nav_about: 'About',
         nav_gallery: 'Gallery',
         nav_pricing: 'Pricing',
-        nav_testimonials: 'Testimonials',
+        nav_reviews: 'Reviews',
+        nav_faq: 'FAQ',
         nav_contact: 'Contact',
-        hero_tagline: 'New Way To Tell Your Wedding Story',
-        hero_desc: 'Transform your wedding invitation into an unforgettable digital experience. Elegant, personalized, and designed to make your special day even more memorable.',
-        hero_btn_gallery: 'View Our Designs',
-        hero_btn_contact: 'Get In Touch',
+        hero_est: 'ESTABLISHED 2025',
+        hero_tagline: 'A "New" Way to Tell Your Wedding Story',
+        hero_desc: 'Crafting elegant digital wedding invitations that capture the essence of your love story. Serving couples worldwide.',
+        hero_cta: 'VIEW OUR WORK',
+        hero_contact: 'GET IN TOUCH',
+        hero_worldwide: 'Worldwide Service',
         about_subtitle: 'OUR STORY',
         about_title: 'About Novela',
-        about_p1: 'At Novela, we believe every love story deserves to be told beautifully. Founded in 2025, we specialize in creating stunning digital wedding invitations that capture the essence of your unique journey together.',
-        about_p2: 'Our team of passionate designers combines elegant aesthetics with modern technology to deliver personalized digital cards that leave a lasting impression on your guests. From traditional designs to contemporary styles, we craft invitations that reflect your personality and set the perfect tone for your celebration.',
-        about_stat1: 'Happy Couples',
-        about_stat2: 'Unique Designs',
+        about_p1: 'Born from a passion for beautiful design and meaningful celebrations, Novela reimagines how couples share their wedding story with the world. We believe every love story deserves to be told beautifully.',
+        about_p2: 'Our team of designers creates bespoke digital invitations that blend timeless elegance with modern technology. Each design is crafted with meticulous attention to detail, ensuring your invitation is as unique as your love story.',
+        about_p3: 'From India to every corner of the globe, we\'ve had the privilege of serving couples worldwide, helping them begin their journey together with invitations that leave lasting impressions.',
+        about_stat1: 'HAPPY COUPLES',
+        about_stat2: 'COUNTRIES',
+        about_stat3: 'RATING',
         gallery_subtitle: 'OUR PORTFOLIO',
-        gallery_title: 'Design Gallery',
-        gallery_desc: 'Explore our collection of exquisite digital wedding invitations, each crafted with love and attention to detail.',
+        gallery_title: 'Our Designs',
+        gallery_desc: 'Each invitation is a unique masterpiece, designed to reflect your personal style and love story.',
+        design_1: 'Elegant Floral',
+        design_1_desc: 'Timeless beauty with delicate florals',
+        design_2: 'Royal Heritage',
+        design_2_desc: 'Traditional elegance reimagined',
+        design_3: 'Modern Romance',
+        design_3_desc: 'Contemporary love stories',
+        design_4: 'Classic Charm',
+        design_4_desc: 'Sophisticated simplicity',
+        design_5: 'Enchanted Garden',
+        design_5_desc: 'Nature-inspired beauty',
+        design_6: 'Traditional Splendor',
+        design_6_desc: 'Rich cultural heritage',
+        design_7: 'Golden Moments',
+        design_7_desc: 'Luxurious golden accents',
+        design_8: 'Regal Elegance',
+        design_8_desc: 'Majestic wedding invitations',
+        gallery_cta_title: 'Your Design',
+        gallery_cta_desc: 'Let us create something unique for you',
+        gallery_cta_btn: 'START NOW',
         pricing_subtitle: 'INVESTMENT',
         pricing_title: 'Pricing Plans',
-        pricing_desc: 'Choose the perfect package for your special day. Every plan is crafted to make your wedding invitation extraordinary.',
-        pricing_limited: 'Limited Offer',
-        pricing_plan1_name: 'Experience',
-        pricing_plan1_desc: 'Perfect starting point for your digital invitation',
-        pricing_plan1_f1: 'Custom design tailored to your style',
-        pricing_plan1_f2: 'Multiple information sections',
-        pricing_plan1_f3: 'Background photo of your choice',
-        pricing_plan1_f4: 'RSVP functionality',
-        pricing_plan1_f5: 'Design refinements included',
-        pricing_plan2_name: 'Premium',
-        pricing_plan2_desc: 'For couples who want something truly unique',
-        pricing_plan2_f1: 'Flexible content sections',
-        pricing_plan2_f2: 'Fully personalized design',
-        pricing_plan2_f3: 'All premium features included',
-        pricing_plan2_f4: 'Priority delivery 48-72 hours',
-        pricing_plan2_f5: 'Enhanced RSVP management',
-        pricing_plan2_f6: 'Beautiful entrance animations',
-        pricing_get_started: 'Get Started',
-        pricing_contact_us: 'Contact Us',
-        testimonials_subtitle: 'LOVE STORIES',
-        testimonials_title: 'What Our Couples Say',
-        testimonial1_text: 'Novela created the most beautiful digital invitation for our wedding. Our guests were amazed by the design and the attention to detail. Highly recommend!',
-        testimonial2_text: 'The team understood exactly what we wanted. The final design was elegant, modern, and perfectly captured our love story. Worth every rupee!',
-        testimonial3_text: 'From concept to delivery, Novela exceeded our expectations. The RSVP feature was so convenient, and everyone loved the beautiful animation!',
+        pricing_desc: 'Choose the perfect package for your special day. Every design is customized to your vision.',
+        plan1_name: 'EXPERIENCE',
+        plan1_note: 'Perfect starting point',
+        plan1_badge: 'LIMITED TIME OFFER',
+        plan1_f1: '4 information blocks included',
+        plan1_f2: 'Custom design template',
+        plan1_f3: 'Background photo of choice',
+        plan1_f4: 'RSVP functionality',
+        plan1_f5: '2 revision rounds',
+        plan1_f6: 'Delivery in 5-7 days',
+        plan1_custom: 'This is just the starting point – we can modify whatever you want.',
+        plan2_name: 'PREMIUM',
+        plan2_note: 'For couples who want it all',
+        plan2_popular: 'MOST POPULAR',
+        plan2_f1: 'Unlimited information blocks',
+        plan2_f2: '100% custom design',
+        plan2_f3: 'All extras included',
+        plan2_f4: 'Unlimited design adjustments',
+        plan2_f5: 'Fast delivery 48-72h',
+        plan2_f6: 'Advanced RSVP dashboard',
+        plan2_f7: 'Customizable envelope animation',
+        plan2_f8: 'Priority support',
+        plan_cta: 'GET STARTED',
+        reviews_subtitle: 'TESTIMONIALS',
+        reviews_title: 'Customer Reviews',
+        reviews_based: 'Based on 159 reviews',
+        review1: '"Absolutely stunning! Novela created the most beautiful digital invitation for our wedding. Our guests were so impressed with the elegant design and smooth animations."',
+        review2: '"Working with Novela was a dream! They understood our vision perfectly and delivered beyond our expectations. The RSVP feature made tracking responses so easy."',
+        review3: '"Fast delivery, beautiful design, excellent communication. Our custom envelope animation was the highlight! Highly recommend Novela to all couples."',
+        write_review: 'SHARE YOUR EXPERIENCE',
+        faq_subtitle: 'QUESTIONS',
+        faq_title: 'Frequently Asked Questions (FAQs)',
+        faq1_q: '1. How do I book a plan?',
+        faq1_a: 'You can book instantly by messaging us on WhatsApp: https://wa.me/919060206586',
+        faq2_q: '2. What information do I need to provide?',
+        faq2_a: 'You\'ll share your event details, names, dates, locations, and any preferences. We\'ll take care of the rest.',
+        faq3_q: '3. Can I customize my invitation?',
+        faq3_a: 'Yes! All plans allow customization, and the Premium Plan includes unlimited revisions.',
+        faq4_q: '4. What is the delivery time?',
+        faq4_a: 'Standard delivery is within 2–3 weeks. Premium delivery is faster (48–72 hours).',
+        faq5_q: '5. Will my invitation work on all devices?',
+        faq5_a: 'Yes. Your invitation will be fully responsive and accessible on mobile, tablet, and desktop.',
+        faq6_q: '6. Do you provide RSVP management?',
+        faq6_a: 'Yes. All plans include an RSVP form to easily collect guest responses.',
+        faq7_q: '7. Is the envelope animation included?',
+        faq7_a: 'Yes. Every plan includes a customizable envelope opening animation with your initials.',
+        faq8_q: '8. Can I make changes after delivery?',
+        faq8_a: 'Minor changes are supported. Premium clients receive unlimited revisions.',
+        faq9_q: '9. Do you offer refunds?',
+        faq9_a: 'Because this is a custom digital service, refunds are not available once work has started. However, we ensure full satisfaction before final delivery.',
         contact_subtitle: 'GET IN TOUCH',
         contact_title: 'Contact Us',
-        contact_desc: 'Ready to create your perfect digital invitation? We\'d love to hear from you.',
-        contact_form_name: 'Your Name',
-        contact_form_email: 'Email Address',
-        contact_form_phone: 'Phone Number',
-        contact_form_message: 'Your Message',
-        contact_form_submit: 'Send Message',
-        contact_email_label: 'Email',
-        contact_phone_label: 'Phone / WhatsApp',
-        contact_location: 'Serving Worldwide - India & International',
-        footer_copyright: '© 2025 Novela. All rights reserved.',
-        footer_tagline: 'New Way To Tell Your Wedding Story'
+        contact_desc: 'Ready to create your perfect invitation? Reach out and let\'s bring your vision to life.',
+        form_name: 'YOUR NAME',
+        form_email: 'EMAIL ADDRESS',
+        form_date: 'WEDDING DATE',
+        form_message: 'YOUR MESSAGE',
+        form_submit: 'SEND MESSAGE',
+        contact_email_label: 'EMAIL',
+        contact_phone_label: 'PHONE / WHATSAPP',
+        contact_follow: 'FOLLOW US',
+        footer_tagline: 'A "New" Way to Tell Your Wedding Story',
+        footer_links: 'QUICK LINKS',
+        footer_contact: 'CONTACT',
+        footer_copy: '© 2025 Novela. All rights reserved. Crafted with love.'
       },
       hi: {
         nav_home: 'होम',
-        nav_about: 'हमा���े बारे में',
-        nav_gallery: 'गैलरी',
-        nav_pricing: 'मूल्य',
-        nav_testimonials: 'प्रशंसापत्र',
+        nav_about: 'हमारे बारे में',
+        nav_gallery: 'गै����री',
+        nav_pricing: 'मूल्��',
+        nav_reviews: 'समीक्षाएं',
+        nav_faq: '���्र��्न',
         nav_contact: 'संपर्क',
-        hero_tagline: 'अपनी शादी की कहानी बताने का नया तरीका',
-        hero_desc: 'अपने शादी के निमंत्रण को एक अविस्मरणीय डिजिटल अनुभव में बदलें। सुरुचिपूर्ण, व्यक्तिगत, और आपके वि��ेष दिन को और भी यादगार बनाने के लिए डिज़ाइन किया गया।',
-        hero_btn_gallery: 'हमारे डिज़ाइन देखें',
-        hero_btn_contact: 'संपर्क करें',
+        hero_est: 'स्थापित 2025',
+        hero_tagline: 'आपकी शादी की कहानी बताने का "नया" तरीका',
+        hero_desc: 'आपकी प्रेम कहानी के सार क�� कैद करने वाले सुंदर डिजिटल शादी के निमंत्रण। दुनि���� ��र में जोड़ों की सेवा।',
+        hero_cta: 'हमारा काम देखें',
+        hero_contact: 'संपर्क करें',
+        hero_worldwide: 'विश्वव्यापी सेवा',
         about_subtitle: 'हमारी कहानी',
         about_title: 'नोवेला के बारे में',
-        about_p1: 'नोवेला में, हम मानते हैं कि हर प्रेम कहानी खूबसूरती से बताई जानी चाहिए। 2025 में स्थापित, हम आश्चर्यजनक डिजिटल शादी के निमंत्रण बन�����ने में विशेषज्ञ हैं जो आपकी अ���ूठी यात���रा के सार को कैप्चर करते हैं।',
-        about_p2: 'हमारी जुनूनी डिजाइ���रों की टीम सुरुचिपूर्ण सौंदर्यशास्त्र को आधुनिक तकनीक के साथ जोड़ती है ताकि व्यक्तिगत डिजिटल कार्ड प्रदान किए ��ा सकें जो आपके मेहमानों पर स्थायी प्रभाव छोड़ें।',
+        about_p1: 'सुं���र डिजाइन और सार्थक समारोहों के प्रति जुनून से जन्मी, नोवेला दुनिया के साथ जोड़ों �����ी शादी की कहानी साझा करने के तरीके को फिर से पर��भाषित करती है।',
+        about_p2: 'हमारी डिजाइन�� टीम कस्टम डिजिटल निमंत्रण बनाती है जो शाश्वत लालित्य ���ो ��धुनि�� तकनीक के साथ मिलाते हैं।',
+        about_p3: 'भारत से लेकर दुनिया के हर कोने तक, हमें विश्व भर के जोड़ों की सेवा करने का सौभाग्य ��िला है।',
         about_stat1: 'खुश जोड़े',
-        about_stat2: 'अनूठे डिज़ाइन',
+        about_stat2: 'देश',
+        about_stat3: 'रेटिंग',
         gallery_subtitle: 'हमारा पोर्टफोलियो',
-        gallery_title: 'डिज़ाइन गैलरी',
-        gallery_desc: 'हमारे उत्कृष्ट डिजिटल शादी के निमंत्रणों का संग्रह देखें, प्रत्येक प्यार और ��िस्तार से तैयार किया गया।',
+        gallery_title: 'हमारे डिजाइन',
+        gallery_desc: 'हर निमंत्रण एक अनूठी क��ति है, जो आपकी ��्य��्���िगत शैली को दर्शाती है।',
+        design_1: 'सुरुचिपूर्�� पुष्प',
+        design_1_desc: 'नाजु�� फूलों के साथ शाश्वत सुंदरता',
+        design_2: 'शाही विरासत',
+        design_2_desc: 'पारंपरिक लालित्य का पुनर्कल्पना',
+        design_3: 'आधुनिक प्रेम',
+        design_3_desc: 'समकालीन प्रेम कहानियां',
+        design_4: 'क्लासिक आकर्षण',
+        design_4_desc: 'परिष्कृत सादगी',
+        design_5: 'मंत्रमुग्ध बगीचा',
+        design_5_desc: 'प्रकृति-प्रेरित सुंदरता',
+        design_6: 'पारंपरिक वैभव',
+        design_6_desc: 'सम����्ध सांस्कृतिक व��रास��',
+        design_7: 'सुनहरे पल',
+        design_7_desc: 'शानदार सुन���रे उच्चारण',
+        design_8: 'शाही लालित्य',
+        design_8_desc: 'शानदार शादी के निमंत्रण',
+        gallery_cta_title: 'आपका डिजाइन',
+        gallery_cta_desc: 'हमें आपके ल���ए कुछ खास बनाने दें',
+        gallery_cta_btn: 'अभी शुरू करें',
         pricing_subtitle: 'निवेश',
-        pricing_title: 'मूल्य योजनाएं',
-        pricing_desc: 'अपने विशेष दिन के लिए सही पैकेज चुनें। हर योजना आपके शादी के निमंत्��ण को अस���धारण बनाने के लिए तैयार की गई है।',
-        pricing_limited: 'सीमित ऑफर',
-        pricing_plan1_name: 'अनुभव',
-        pricing_plan1_desc: 'आपके डिजिटल निमंत्रण के लिए सही शुरुआत',
-        pricing_plan1_f1: 'आपकी शैली के अनुरूप कस्टम डिज़ाइन',
-        pricing_plan1_f2: '4 सूचना ब्लॉक शामिल',
-        pricing_plan1_f3: 'आपकी पसंद की प���ष्ठभूमि फ��टो',
-        pricing_plan1_f4: 'RSVP कार्यक्षमता',
-        pricing_plan1_f5: 'असीमित संशोधन',
-        pricing_plan1_note: 'यह सिर्फ शुरुआत है, हम जो चाहें वो बदल सकते हैं।',
-        pricing_plan2_name: 'प्रीमियम',
-        pricing_plan2_desc: 'ज��� जोड़े कुछ वास्तव में अनूठा चाह��े हैं उनक�� लिए',
-        pricing_plan2_f1: '��सीमित ब्लॉक',
-        pricing_plan2_f2: '100% कस्टम डिज़ाइन',
-        pricing_plan2_f3: 'सभी अतिरिक्त सुवि��ाएं शामिल',
-        pricing_plan2_f4: 'असीमित ��िज़ाइन समायोजन',
-        pricing_plan2_f5: 'तेज़ डिलीवरी 48-72 घंटे',
-        pricing_plan2_f6: 'उन्नत RSVP ड���शबोर्ड',
-        pricing_plan2_f7: 'अनुकूलन योग्य लिफाफा एनीमेशन',
-        pricing_get_started: 'शुरू करें',
-        pricing_contact_us: 'संपर्क करें',
-        testimonials_subtitle: 'प्रेम कहानियाँ',
-        testimonials_title: 'हमारे जोड़े क्या कहते हैं',
-        testimonial1_text: 'नोवेला ने हमारी शादी के लिए सबसे सुंदर डिजिटल निमंत्रण बनाया। हमारे मेहमान डिज़ाइन और विस्तार पर ध्यान देखकर चक���त थे। अत्यधिक अनुशंसित!',
-        testimonial2_text: 'टीम ने बिल्कुल समझा कि हम क्या चाहते थे। अंतिम डिज़ाइन सुरुचिपूर्ण, आधुनिक और हमारी प्रेम कहानी को पूरी तरह से कैप्चर करता था।',
-        testimonial3_text: 'अवध��रणा से डिलीवरी तक, नोवेला ने हमारी उम्मीदों से बढ़कर किया। RSVP ��ुविधा बहुत सुविधाजनक थी, और सभी को सुंदर एनीम���शन पसंद आया!',
+        pricing_title: 'म���ल्य योज���ाएं',
+        pricing_desc: 'अपने खास दिन के लि�� सही पैकेज चुनें।',
+        plan1_name: 'अनुभव',
+        plan1_note: 'शुरुआत के लिए बेहतरीन',
+        plan1_badge: 'सीमित समय ��फर',
+        plan1_f1: '4 सूचना ब्����क शा���िल',
+        plan1_f2: 'कस्टम डिजाइन टेम्पलेट',
+        plan1_f3: 'पसंद क��� प��ष्ठभूमि फोटो',
+        plan1_f4: 'RSVP सुविधा',
+        plan1_f5: '2 संशोधन राउंड',
+        plan1_f6: '5-7 दिनों में डिलीवरी',
+        plan1_custom: 'यह सिर्फ शुरुआत ��ै - हम ��ो चाहें बदल सकते हैं।',
+        plan2_name: 'प्रीमियम',
+        plan2_note: 'जो सब कुछ चाहते हैं उनके लिए',
+        plan2_popular: 'सबसे लोकप्रिय',
+        plan2_f1: 'असीमित सूचना ब्लॉक',
+        plan2_f2: '100% कस्टम डिजाइन',
+        plan2_f3: 'स��ी ��क्��्ट्रा शामिल',
+        plan2_f4: 'असीमित डिजाइन समायोजन',
+        plan2_f5: 'तेज डिलीवरी 48-72 घंटे',
+        plan2_f6: 'उन्नत RSVP डैशबोर्ड',
+        plan2_f7: 'कस्टम लिफाफा एनिमेशन',
+        plan2_f8: 'प्राथमिकता सहायता',
+        plan_cta: 'शुरू करें',
+        reviews_subtitle: 'प्रशंस���पत्र',
+        reviews_title: 'ग्��ाहक समीक्षाएं',
+        reviews_based: '159 समीक्षा���ं पर आधारित',
+        review1: '"बिल्कु�� शानदार! नोवेला ने हमारी शादी के लिए ��बसे सुंदर ��िजिटल निमंत्रण बना��ा। हमारे मेहमान डिजाइन से बहुत प���रभा���ित थे��"',
+        review2: '"नोवेला के साथ ��ाम करना एक स��ना था! उन्होंने हमारी दृष्टि को पूरी तरह स��झा और उम्म���दों ��े परे डि��ीवर किया।"',
+        review3: '"तेज डिलीवरी, सुंदर डिजाइन, उत्कृष्ट संचार। हमारा कस्टम लिफाफा एनिमेशन हाइलाइट था!"',
+        write_review: 'अपना अनुभव साझा करें',
+        faq_subtitle: '��्रश्न',
+        faq_title: 'अक्सर पूछे जाने वाले',
+        faq1_q: 'क्या मैं अपनी फोटो ���े साथ डिजाइन को कस्टमाइज ��र सकत�� हूं?',
+        faq1_a: 'बिल्��ुल! आप ��पनी तस्वीरें दे सकते हैं और हम उन��हें आपके ��िमंत्रण डिजाइन ��ें खूबसूरती से शामि��� करेंगे।',
+        faq2_q: 'क्या मुझे ���ारी जानक��री पहले चाहिए? क्या मैं बाद में बदलाव कर सकता हूं?',
+        faq2_a: 'बिल्कुल नहीं! आप जो है उससे शुरू कर स��ते हैं और बाद में वि��रण अपडेट कर सकते हैं।',
+        faq3_q: 'मुझे अपना निमंत्रण कब तक मिले��ा?',
+        faq3_a: 'अनुभव ��ोजना के लिए 5-7 दिन। प्रीमियम योजना 48-72 घंटों में तेज डि����ीवरी देती है।',
+        faq4_q: 'क���या फ�����बैक के लिए जगह है?',
+        faq4_a: 'बिल्कुल! आपको डि���ाइन और सामग्री को ठीक करने के ��िए दो संशोधन राउंड मिलत��� हैं।',
+        faq5_q: 'RSVP कहां जाते हैं?',
+        faq5_a: 'सभी RSVP आपके व्यक्तिगत डैशबोर्ड के माध्यम ��े एकत्र किए ज��ते हैं।',
+        faq6_q: 'निमंत्रण कितने समय तक ऑनलाइन रहता है?',
+        faq6_a: 'आपका डिजिटल निमंत्रण निर्माण की ता��ीख से 1 वर्ष तक ऑनल���इन रहता है।',
         contact_subtitle: 'संपर्क करें',
-        contact_title: 'हमसे संपर्क करें',
-        contact_desc: 'अपना परफेक्ट डिजिटल निमंत्र�� बनाने के लिए तैयार हैं? हम आपसे सुनना ��ाहेंगे।',
-        contact_form_name: 'आपक��� नाम',
-        contact_form_email: 'ईमेल पता',
-        contact_form_phone: 'फोन नंबर',
-        contact_form_message: 'आपका संदेश',
-        contact_form_submit: 'संदेश भेजें',
+        contact_title: 'हमसे संप���्क करें',
+        contact_desc: 'अपना सही निमं���्रण ब��ाने के लिए तैयार हैं? संपर्क कर��ं।',
+        form_name: 'आपका नाम',
+        form_email: 'ईमेल पता',
+        form_date: 'शादी की तारीख',
+        form_message: 'आपका ��ंदेश',
+        form_submit: 'संदेश भेजें',
         contact_email_label: 'ईमेल',
-        contact_phone_label: 'फोन / व्हाट्सएप',
-        contact_location: 'विश्वव्यापी सेवा - भारत और अंतर्राष्ट्रीय',
-        footer_copyright: '© 2025 नोवेला। सर्वाधिकार सुरक्षित।',
-        footer_tagline: 'अपनी शादी की कहानी बताने का नया तरीका'
+        contact_phone_label: 'फोन / व्ह���ट्सएप',
+        contact_follow: 'हमें फॉलो करें',
+        footer_tagline: 'आपकी शादी की कहानी बताने का "नया" तरीका',
+        footer_links: 'त्वरित लिंक',
+        footer_contact: 'संप��्क',
+        footer_copy: '© 2025 नोवेला। सर्वाधिकार सुरक्षित। प्यार से बनाया।'
       }
     };
 
-    // Language switching
-    function setLanguage(lang) {
-      currentLanguage = lang;
+    let currentLang = 'en';
+    let config = { ...defaultConfig };
+
+    function applyTranslations(lang) {
+      const trans = translations[lang];
       document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
-        if (translations[lang][key]) {
-          el.textContent = translations[lang][key];
+        if (trans[key]) {
+          el.textContent = trans[key];
         }
       });
-      
-      // Update language button styles
-      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-      document.getElementById('lang-hi').classList.toggle('active', lang === 'hi');
     }
 
-    // Mobile menu
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+    function onConfigChange(cfg) {
+      document.getElementById('heroTagline').textContent = cfg.hero_tagline || defaultConfig.hero_tagline;
+      document.getElementById('contactEmail').textContent = cfg.contact_email || defaultConfig.contact_email;
+      document.getElementById('contactEmail').href = 'mailto:' + (cfg.contact_email || defaultConfig.contact_email);
+      document.getElementById('contactPhone').textContent = cfg.contact_phone || defaultConfig.contact_phone;
+      document.getElementById('contactPhone').href = 'tel:' + (cfg.contact_phone || defaultConfig.contact_phone).replace(/\s/g, '');
     }
 
-    function closeMobileMenu() {
-      document.getElementById('mobile-menu').classList.add('hidden');
-    }
-
-    // Form handling
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('form-success').classList.remove('hidden');
-      this.reset();
-      setTimeout(() => {
-        document.getElementById('form-success').classList.add('hidden');
-      }, 5000);
+    // Language toggle
+    document.getElementById('langToggle').addEventListener('click', function() {
+      currentLang = currentLang === 'en' ? 'hi' : 'en';
+      this.textContent = currentLang === 'en' ? 'हि��दी' : 'English';
+      applyTranslations(currentLang);
     });
 
-    // Element SDK initialization
-    async function onConfigChange(cfg) {
-      config = { ...defaultConfig, ...cfg };
-      
-      // Update business name
-      const navBrand = document.getElementById('nav-brand');
-      const heroTitle = document.getElementById('hero-title');
-      if (navBrand) navBrand.textContent = config.business_name;
-      if (heroTitle) heroTitle.textContent = config.business_name;
-      
-      // Update tagline
-      const heroTagline = document.getElementById('hero-tagline');
-      if (heroTagline) heroTagline.textContent = config.tagline;
-      
-      // Update about title
-      const aboutTitle = document.getElementById('about-title');
-      if (aboutTitle) aboutTitle.textContent = config.about_title;
-      
-      // Update contact info
-      const contactEmail = document.getElementById('contact-email');
-      const contactPhone = document.getElementById('contact-phone');
-      if (contactEmail) contactEmail.textContent = config.contact_email;
-      if (contactPhone) contactPhone.textContent = config.contact_phone;
-      
-      // Apply colors
-      document.documentElement.style.setProperty('--color-bg', config.background_color);
-      document.documentElement.style.setProperty('--color-surface', config.surface_color);
-      document.documentElement.style.setProperty('--color-text', config.text_color);
-      document.documentElement.style.setProperty('--color-primary', config.primary_color);
-      document.documentElement.style.setProperty('--color-secondary', config.secondary_color);
-      
-      // Apply font
-      const fontStack = `${config.font_family}, serif`;
-      document.querySelectorAll('.font-display').forEach(el => {
-        el.style.fontFamily = fontStack;
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
       });
-      
-      // Apply font size scaling
-      const baseSize = config.font_size;
-      document.body.style.fontSize = `${baseSize}px`;
-    }
+    });
 
-    function mapToCapabilities(cfg) {
-      return {
-        recolorables: [
-          {
-            get: () => cfg.background_color || defaultConfig.background_color,
-            set: (v) => { cfg.background_color = v; if (window.elementSdk) window.elementSdk.setConfig({ background_color: v }); }
-          },
-          {
-            get: () => cfg.surface_color || defaultConfig.surface_color,
-            set: (v) => { cfg.surface_color = v; if (window.elementSdk) window.elementSdk.setConfig({ surface_color: v }); }
-          },
-          {
-            get: () => cfg.text_color || defaultConfig.text_color,
-            set: (v) => { cfg.text_color = v; if (window.elementSdk) window.elementSdk.setConfig({ text_color: v }); }
-          },
-          {
-            get: () => cfg.primary_color || defaultConfig.primary_color,
-            set: (v) => { cfg.primary_color = v; if (window.elementSdk) window.elementSdk.setConfig({ primary_color: v }); }
-          },
-          {
-            get: () => cfg.secondary_color || defaultConfig.secondary_color,
-            set: (v) => { cfg.secondary_color = v; if (window.elementSdk) window.elementSdk.setConfig({ secondary_color: v }); }
-          }
-        ],
-        borderables: [],
-        fontEditable: {
-          get: () => cfg.font_family || defaultConfig.font_family,
-          set: (v) => { cfg.font_family = v; if (window.elementSdk) window.elementSdk.setConfig({ font_family: v }); }
-        },
-        fontSizeable: {
-          get: () => cfg.font_size || defaultConfig.font_size,
-          set: (v) => { cfg.font_size = v; if (window.elementSdk) window.elementSdk.setConfig({ font_size: v }); }
+    // FAQ accordion
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.closest('.faq-item');
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) {
+          item.classList.add('active');
         }
-      };
-    }
+      });
+    });
 
-    function mapToEditPanelValues(cfg) {
-      return new Map([
-        ['business_name', cfg.business_name || defaultConfig.business_name],
-        ['tagline', cfg.tagline || defaultConfig.tagline],
-        ['about_title', cfg.about_title || defaultConfig.about_title],
-        ['contact_email', cfg.contact_email || defaultConfig.contact_email],
-        ['contact_phone', cfg.contact_phone || defaultConfig.contact_phone]
-      ]);
-    }
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const date = formData.get('date');
+      const message = formData.get('message');
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'SENDING...';
+      
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: '6c8f9e3a-4b2d-4f5e-9a7c-8d6e5f4c3b2a',
+            from_name: name,
+            email: email,
+            subject: 'New Wedding Invitation Inquiry from ' + name,
+            message: `Name: ${name}\nEmail: ${email}\nWedding Date: ${date || 'Not specified'}\n\nMessage:\n${message}`,
+            to: 'novela.official25@gmail.com'
+          })
+        });
+        
+        if (response.ok) {
+          document.getElementById('formSuccess').classList.remove('hidden');
+          this.reset();
+          setTimeout(() => {
+            document.getElementById('formSuccess').classList.add('hidden');
+          }, 3000);
+        } else {
+          alert('Sorry, there was an error sending your message. Please try again or contact us directly via WhatsApp.');
+        }
+      } catch (error) {
+        alert('Sorry, there was an error sending your message. Please try again or contact us directly via WhatsApp.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = currentLang === 'en' ? 'SEND MESSAGE' : 'संदेश भेजें';
+      }
+    });
 
-    // Initialize SDK
+    // Initialize Element SDK
     if (window.elementSdk) {
       window.elementSdk.init({
         defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
+        onConfigChange: async (cfg) => {
+          config = { ...defaultConfig, ...cfg };
+          onConfigChange(config);
+        },
+        mapToCapabilities: (cfg) => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ['hero_tagline', cfg.hero_tagline || defaultConfig.hero_tagline],
+          ['contact_email', cfg.contact_email || defaultConfig.contact_email],
+          ['contact_phone', cfg.contact_phone || defaultConfig.contact_phone]
+        ])
       });
-    } else {
-      onConfigChange(defaultConfig);
     }
+
+    // Initial render
+    onConfigChange(config);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c633b76d2db3e39',t:'MTc2OTc5OTgzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c67d87e136e3e39',t:'MTc2OTg0ODIxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
